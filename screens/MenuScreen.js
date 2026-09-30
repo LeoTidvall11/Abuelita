@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet } from "react-native";
-export default function HomeScreen() {
+
+export default function MenuScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Abuelita</Text>
+      <Text style={styles.text}>Menu</Text>
     </View>
   );
 }
