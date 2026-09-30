@@ -3,16 +3,37 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import MenuScreen from "./screens/MenuScreen";
 import DishDescription from "./screens/DishDescription";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
+ 
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Menu" component={MenuScreen} />
-        <Stack.Screen name="Dish" component={DishDescription} />
-      </Stack.Navigator>
+      <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "hotpink",
+        tabBarInactiveTintColor: "gray"
+      }}>
+        <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarIcon: ({ color }) => (
+          <Ionicons
+          name= "home"
+          size={24}
+          color={color}
+          />
+        )}} />
+        <Tab.Screen name="Menu" component={MenuScreen} options={{ tabBarIcon: ( { color }) => (
+          <Ionicons
+          name="restaurant"
+          size={24}
+          color={color}
+          />
+        )}} />
+       {/* <Stack.Screen name="Dish" component={DishDescription} /> */}
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
