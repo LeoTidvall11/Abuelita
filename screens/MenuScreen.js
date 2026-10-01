@@ -1,9 +1,24 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { meals } from "../data/Data";
+import MenuCards from "../components/MenuCards";
 
-export default function MenuScreen() {
+export default function MenuScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Menu</Text>
+      <FlatList
+        data={meals}
+        renderItem={({ item }) => (
+          <MenuCards
+            item={item}
+            onPress={() =>
+              navigation.navigate("Dish", {
+                mealId: item.id,
+              })
+            }
+          />
+        )}
+      />
     </View>
   );
 }
