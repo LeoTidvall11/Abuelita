@@ -41,29 +41,12 @@ export default function App() {
           component={MenuStack}
           options={{
             headerShown: false,
+            popToTopOnBlur: true,
             tabBarIcon: ({ color }) => (
               <Ionicons name="restaurant" size={24} color={color} />
             ),
           }}
         />
-      screenOptions={{
-        tabBarActiveTintColor: "hotpink",
-        tabBarInactiveTintColor: "gray"
-      }}>
-        <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarIcon: ({ color }) => (
-          <Ionicons
-          name= "home"
-          size={24}
-          color={color}
-          />
-        )}} />
-        <Tab.Screen name="Menu" component={MenuStack} options={{ headerShown:false, popToTopOnBlur: true, tabBarIcon: ( { color }) => (
-          <Ionicons
-          name="restaurant"
-          size={24}
-          color={color}
-          />
-        )}} />
       </Tab.Navigator>
     </NavigationContainer>
   );
