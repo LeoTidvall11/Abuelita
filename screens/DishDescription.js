@@ -1,9 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
+import { meals } from "../data/Data";
 
-export default function DishDescription() {
+export default function DishDescription({ route }) {
+  const { mealId } = route.params;
+  const meal = meals.find((m) => m.id === mealId);
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Dish</Text>
+      <Text style={styles.text}>{meal?.name}</Text>
     </View>
   );
 }
