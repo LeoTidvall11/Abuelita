@@ -290,3 +290,19 @@ export const meals = [
     allergens: ["gluten"],
   },
 ];
+
+export const openingHours = [
+  { day: "Måndag", hours: null },
+  { day: "Tisdag", hours: "12–21" },
+  { day: "Onsdag", hours: "12–21" },
+  { day: "Torsdag", hours: "12–21" },
+  { day: "Fredag", hours: "12–23" },
+  { day: "Lördag", hours: "12–23" },
+  { day: "Söndag", hours: "12–21" },
+];
+
+export const contactInfo = {
+  address: "vasagatan 23, Valencia",
+  phone: "070-1337 42 12",
+  email: "hola@abuelita.se",
+};
