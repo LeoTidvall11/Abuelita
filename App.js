@@ -7,10 +7,23 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+function MenuStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="MenuList" component={MenuScreen}
+      options={{ title: "Menu" }}
+      />
+      <Stack.Screen name="Dish" component={DishDescription} />
+      </Stack.Navigator>
+  )
+}
+
 
 export default function App() {
  
-  const Stack = createNativeStackNavigator();
+  
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -25,14 +38,13 @@ export default function App() {
           color={color}
           />
         )}} />
-        <Tab.Screen name="Menu" component={MenuScreen} options={{ tabBarIcon: ( { color }) => (
+        <Tab.Screen name="Menu" component={MenuStack} options={{ headerShown:false, tabBarIcon: ( { color }) => (
           <Ionicons
           name="restaurant"
           size={24}
           color={color}
           />
         )}} />
-       {/* <Stack.Screen name="Dish" component={DishDescription} /> */}
       </Tab.Navigator>
     </NavigationContainer>
   );
