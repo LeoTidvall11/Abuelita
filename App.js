@@ -11,22 +11,41 @@ const Stack = createNativeStackNavigator();
 
 function MenuStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="MenuList" component={MenuScreen}
-      options={{ title: "Menu" }}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="MenuList" component={MenuScreen} />
       <Stack.Screen name="Dish" component={DishDescription} />
-      </Stack.Navigator>
-  )
+    </Stack.Navigator>
+  );
 }
 
-
 export default function App() {
- 
-  
   return (
     <NavigationContainer>
       <Tab.Navigator
+        screenOptions={{
+          tabBarActiveTintColor: "hotpink",
+          tabBarInactiveTintColor: "gray",
+          headerShown: false,
+        }}>
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Menu"
+          component={MenuStack}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="restaurant" size={24} color={color} />
+            ),
+          }}
+        />
       screenOptions={{
         tabBarActiveTintColor: "hotpink",
         tabBarInactiveTintColor: "gray"
