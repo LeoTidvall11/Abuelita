@@ -38,7 +38,7 @@ export default function App() {
           color={color}
           />
         )}} />
-        <Tab.Screen name="Menu" component={MenuStack} options={{ headerShown:false, tabBarIcon: ( { color }) => (
+        <Tab.Screen name="Menu" component={MenuStack} options={{ headerShown:false, popToTopOnBlur: true, tabBarIcon: ( { color }) => (
           <Ionicons
           name="restaurant"
           size={24}
