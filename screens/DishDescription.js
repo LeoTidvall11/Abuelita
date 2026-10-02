@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { meals } from "../data/Data";
+import { colors } from "../constants/Color";
 
 export default function DishDescription({ route }) {
   const { mealId } = route.params;
@@ -14,11 +15,11 @@ export default function DishDescription({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: colors.cream,
   },
   text: {
     fontSize: 24,
-    color: "white",
+    color: colors.darkGreen,
     textAlign: "center",
     marginTop: 40,
   },

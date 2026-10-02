@@ -1,4 +1,5 @@
 import { Text, StyleSheet, Pressable } from "react-native";
+import { colors } from "../constants/Color";
 export default function MenuCards({ item, onPress }) {
   return (
     <Pressable style={styles.container} onPress={onPress}>
@@ -9,7 +10,7 @@ export default function MenuCards({ item, onPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: colors.white,
     padding: 16,
     marginHorizontal: 16,
     marginVertical: 8,
@@ -17,6 +18,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: "black",
+    color: colors.darkGreen,
   },
 });

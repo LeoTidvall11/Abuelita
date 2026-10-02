@@ -5,6 +5,8 @@ import MenuScreen from "./screens/MenuScreen";
 import DishDescription from "./screens/DishDescription";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import AboutUs from "./screens/AboutUs";
+import { colors } from "./constants/Color";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -23,9 +25,15 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
-          tabBarActiveTintColor: "hotpink",
-          tabBarInactiveTintColor: "gray",
+          tabBarActiveTintColor: colors.turquoise,
+          tabBarInactiveTintColor: colors.darkGreen,
           headerShown: false,
+          tabBarStyle: {
+            backgroundColor: colors.cream,
+            borderTopColor: colors.darkGreen,
+            height: 80,
+            paddingTop: 10,
+          },
         }}>
         <Tab.Screen
           name="Home"
@@ -44,6 +52,15 @@ export default function App() {
             popToTopOnBlur: true,
             tabBarIcon: ({ color }) => (
               <Ionicons name="restaurant" size={24} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="AboutUs"
+          component={AboutUs}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="people-circle-outline" size={24} color={color} />
             ),
           }}
         />
