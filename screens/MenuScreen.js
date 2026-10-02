@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { meals } from "../data/Data";
 import MenuCards from "../components/MenuCards";
+import { colors } from "../constants/Color";
 
 export default function MenuScreen({ navigation }) {
   return (
@@ -26,11 +27,11 @@ export default function MenuScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: colors.cream,
   },
   text: {
     fontSize: 24,
-    color: "white",
+    color: colors.turquoise,
     textAlign: "center",
     marginTop: 40,
   },
