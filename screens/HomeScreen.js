@@ -1,13 +1,30 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "../constants/Color";
+import { useFonts } from "expo-font";
+import Logo from "../components/Logo";
+import Subtitle from "../components/Subtitle";
+
 
 export default function HomeScreen({ navigation }) {
+
+  const [fontsLoaded] = useFonts({
+    "Rye": require("../assets/fonts/Rye-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Abuelita</Text>
+      <Logo />
+
+      <View style={styles.titleGap} />
+
       <Text style={styles.subtitle}>Comida Con Amor</Text>
 
-      <View style={styles.spacer} />
+      <View style={styles.buttonGap} />
 
       <Pressable
         onPress={() => navigation.navigate("Menu")}
@@ -36,6 +53,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    fontFamily: "Rye",
     color: colors.darkGreen,
     fontSize: 48,
     fontWeight: "800",
@@ -43,16 +61,21 @@ const styles = StyleSheet.create({
   },
 
   subtitle: {
-    color: colors.darkGreen,
-    fontSize: 16,
+    fontFamily: "Rye",
+    color: colors.turquoise,
+    fontSize: 24,
     fontWeight: "600",
     textAlign: "center",
     letterSpacing: 2,
     marginTop: 8,
   },
 
-  spacer: {
+  buttonGap: {
     height: 80,
+  },
+
+  titleGap: {
+    height: 20,
   },
 
   primaryButton: {
