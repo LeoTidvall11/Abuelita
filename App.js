@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import MenuScreen from "./screens/MenuScreen";
 import DishDescription from "./screens/DishDescription";
+import CategoryScreen from "./screens/CategoryScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import AboutUs from "./screens/AboutUs";
@@ -14,6 +15,7 @@ const Stack = createNativeStackNavigator();
 function MenuStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Categories" component={CategoryScreen} />
       <Stack.Screen name="MenuList" component={MenuScreen} />
       <Stack.Screen name="Dish" component={DishDescription} />
     </Stack.Navigator>
@@ -34,7 +36,8 @@ export default function App() {
             height: 80,
             paddingTop: 10,
           },
-        }}>
+        }}
+      >
         <Tab.Screen
           name="Home"
           component={HomeScreen}
