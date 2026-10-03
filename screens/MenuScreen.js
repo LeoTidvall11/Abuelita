@@ -3,20 +3,24 @@ import { meals } from "../data/Data";
 import MenuCards from "../components/MenuCards";
 import { colors } from "../constants/Color";
 
-export default function MenuScreen({ navigation }) {
+export default function MenuScreen({ navigation, route }) {
+  
+  const categoryId = route.params?.categoryId;
+  const filteredMeals = meals.filter((meal) => meal.category === categoryId);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Menu</Text>
       <FlatList
-        data={meals}
+        data={filteredMeals}
         renderItem={({ item }) => (
           <MenuCards
-            item={item}
-            onPress={() =>
-              navigation.navigate("Dish", {
-                mealId: item.id,
-              })
-            }
+              item={item}
+              onPress={() =>
+                navigation.navigate("Dish", {
+                  mealId: item.id,
+                })
+              }
           />
         )}
       />
@@ -34,5 +38,5 @@ const styles = StyleSheet.create({
     color: colors.turquoise,
     textAlign: "center",
     marginTop: 40,
-  },
+  }
 });
