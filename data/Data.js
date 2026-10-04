@@ -1,10 +1,10 @@
 export const categories = [
-  { id: "starters", title: "Förrätter" },
-  { id: "tacos", title: "Tacos" },
-  { id: "burritos", title: "Burritos & Quesadillas" },
-  { id: "sides", title: "Tillbehör" },
-  { id: "desserts", title: "Efterrätter" },
-  { id: "drinks", title: "Drycker" },
+  { id: "starters", title: "Förrätter", icon: "food-variant" },
+  { id: "tacos", title: "Tacos", icon: "taco" },
+  { id: "burritos", title: "Burritos & Quesadillas", icon: "circle-slice-4" },
+  { id: "sides", title: "Tillbehör", icon: "french-fries" },
+  { id: "desserts", title: "Efterrätter", icon: "cookie-outline" },
+  { id: "drinks", title: "Drycker", icon: "cup-water" },
 ];
 
 export const meals = [

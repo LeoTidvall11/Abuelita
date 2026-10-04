@@ -15,12 +15,12 @@ export default function MenuScreen({ navigation, route }) {
         data={filteredMeals}
         renderItem={({ item }) => (
           <MenuCards
-              item={item}
-              onPress={() =>
-                navigation.navigate("Dish", {
-                  mealId: item.id,
-                })
-              }
+            item={item}
+            onPress={() =>
+              navigation.navigate("Dish", {
+                mealId: item.id,
+              })
+            }
           />
         )}
       />

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { categories } from "../data/Data";
 import { colors } from "../constants/Color";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function CategoryScreen({ navigation }) {
   
@@ -14,18 +14,20 @@ export default function CategoryScreen({ navigation }) {
         renderItem={({ item }) => (
           <Pressable
             style={styles.categoryButton}
+            android_ripple={{ color: colors.yellow }}
             onPress={() =>
               navigation.navigate("MenuList", {
                 categoryId: item.id,
               })
             }
           >
-            <Text style={styles.categoryText}>{item.title}</Text>
-            <Ionicons
-              name="chevron-forward"
-              size={22}
-              color={colors.darkGreen}
+            <MaterialCommunityIcons
+              name={item.icon}
+              size={24}
+              color={colors.turquoise}
             />
+            <Text style={styles.categoryText}>{item.title}</Text>
+            <Ionicons name="chevron-forward" size={22} color={colors.pink} />
           </Pressable>
         )}
       />
@@ -54,7 +56,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 12,
     borderWidth: 1,
-    borderColor: colors.turquoise,
+    borderColor: colors.yellow,
+    elevation: 2,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -63,5 +66,7 @@ const styles = StyleSheet.create({
     color: colors.darkGreen,
     fontSize: 18,
     fontWeight: "700",
-  }
+    flex: 1,
+    marginLeft: 12,
+  },
 });

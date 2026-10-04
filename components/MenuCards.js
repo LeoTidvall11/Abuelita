@@ -2,7 +2,11 @@ import { Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "../constants/Color";
 export default function MenuCards({ item, onPress }) {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
+    <Pressable
+      style={styles.container}
+      onPress={onPress}
+      android_ripple={{ color: colors.yellow }}
+    >
       <Text style={styles.text}>{item.name}</Text>
     </Pressable>
   );
