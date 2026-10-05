@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { Text, StyleSheet, FlatList } from "react-native";
 import { meals } from "../data/Data";
 import MenuCards from "../components/MenuCards";
 import { colors } from "../constants/Color";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { spacing } from "../constants/Spacing";
 
 export default function MenuScreen({ navigation, route }) {
   
@@ -9,8 +11,8 @@ export default function MenuScreen({ navigation, route }) {
   const filteredMeals = meals.filter((meal) => meal.category === categoryId);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Menu</Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>Meny</Text>
       <FlatList
         data={filteredMeals}
         renderItem={({ item }) => (
@@ -24,7 +26,7 @@ export default function MenuScreen({ navigation, route }) {
           />
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -34,9 +36,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cream,
   },
   text: {
-    fontSize: 24,
+    fontSize: 36,
+    fontWeight: "800",
     color: colors.turquoise,
     textAlign: "center",
-    marginTop: 40,
-  }
+    marginTop: spacing.screenTop,
+    marginBottom: spacing.titleBottom,
+  },
 });

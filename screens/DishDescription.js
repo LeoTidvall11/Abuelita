@@ -12,6 +12,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { meals } from "../data/Data";
 import { getMealImage } from "../data/MealImages";
 import { colors } from "../constants/Color";
+import { spacing } from "../constants/Spacing";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function DishDescription({ route, navigation }) {
   const { mealId } = route.params;
@@ -28,43 +30,45 @@ export default function DishDescription({ route, navigation }) {
   ].filter(Boolean);
 
   return (
-    <ScrollView style={styles.container}>
-      <Image
-        source={getMealImage(meal.id, "detail")}
-        style={{ width, height: (width * 2) / 3 }}
-        resizeMode="cover"
-      />
-      <Pressable
-        style={[styles.backButton, { top: insets.top + 8 }]}
-        onPress={() => navigation.goBack()}
-      >
-        <Ionicons name="chevron-back" size={24} color={colors.darkGreen} />
-      </Pressable>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Image
+          source={getMealImage(meal.id, "detail")}
+          style={{ width, height: (width * 2) / 3 }}
+          resizeMode="cover"
+        />
+        <Pressable
+          style={[styles.backButton, { top: insets.top + 8 }]}
+          onPress={() => navigation.goBack()}
+        >
+          <Ionicons name="chevron-back" size={24} color={colors.darkGreen} />
+        </Pressable>
 
-      <View style={styles.content}>
-        <View style={styles.titleRow}>
-          <Text style={styles.text}>{meal.name}</Text>
-          <Text style={styles.price}>{meal.price} kr</Text>
-        </View>
-
-        {tags.length > 0 && (
-          <View style={styles.tags}>
-            {tags.map((tag) => (
-              <Text key={tag} style={styles.tag}>
-                {tag}
-              </Text>
-            ))}
+        <View style={styles.content}>
+          <View style={styles.titleRow}>
+            <Text style={styles.text}>{meal.name}</Text>
+            <Text style={styles.price}>{meal.price} kr</Text>
           </View>
-        )}
 
-        <Text style={styles.description}>{meal.description}</Text>
+          {tags.length > 0 && (
+            <View style={styles.tags}>
+              {tags.map((tag) => (
+                <Text key={tag} style={styles.tag}>
+                  {tag}
+                </Text>
+              ))}
+            </View>
+          )}
 
-        <Text style={styles.allergens}>
-          Allergener:{" "}
-          {meal.allergens.length > 0 ? meal.allergens.join(", ") : "Inga"}
-        </Text>
-      </View>
-    </ScrollView>
+          <Text style={styles.description}>{meal.description}</Text>
+
+          <Text style={styles.allergens}>
+            Allergener:{" "}
+            {meal.allergens.length > 0 ? meal.allergens.join(", ") : "Inga"}
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -75,13 +79,14 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: "absolute",
-    left: 16,
+    left: spacing.screenHorizontal,
     backgroundColor: colors.white,
     borderRadius: 20,
     padding: 8,
   },
   content: {
-    padding: 20,
+    paddingHorizontal: spacing.screenHorizontal,
+    paddingVertical: spacing.screenTop,
   },
   titleRow: {
     flexDirection: "row",
@@ -125,5 +130,8 @@ const styles = StyleSheet.create({
     color: colors.darkGreen,
     opacity: 0.7,
     marginTop: 16,
+  },
+  scrollContent: {
+    paddingTop: spacing.screenTop,
   },
 });

@@ -1,13 +1,15 @@
-import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
+import { Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { categories } from "../data/Data";
 import { colors } from "../constants/Color";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { spacing } from "../constants/Spacing";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CategoryScreen({ navigation }) {
   
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Menu</Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>Meny</Text>
 
       <FlatList
         data={categories}
@@ -31,7 +33,7 @@ export default function CategoryScreen({ navigation }) {
           </Pressable>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -45,16 +47,16 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: colors.turquoise,
     textAlign: "center",
-    marginTop: 50,
-    marginBottom: 24,
+    marginTop: spacing.screenTop,
+    marginBottom: spacing.titleBottom,
   },
   categoryButton: {
     backgroundColor: colors.cream,
     paddingHorizontal: 20,
     paddingVertical: 18,
     borderRadius: 18,
-    marginHorizontal: 20,
-    marginBottom: 12,
+    marginHorizontal: spacing.screenHorizontal,
+    marginBottom: spacing.cardGap,
     borderWidth: 1,
     borderColor: colors.yellow,
     elevation: 2,

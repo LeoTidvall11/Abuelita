@@ -1,6 +1,7 @@
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import { colors } from "../constants/Color";
 import { getMealImage } from "../data/MealImages";
+import { spacing } from "../constants/Spacing";
 
 export default function MenuCards({ item, onPress }) {
   return (
@@ -27,10 +28,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.white,
     padding: 12,
-    marginHorizontal: 16,
+    marginHorizontal: spacing.screenHorizontal,
     marginVertical: 8,
     borderRadius: 8,
     overflow: "hidden",
+    borderWidth: 1,
+    borderColor: colors.yellow,
   },
   image: {
     width: 80,
