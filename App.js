@@ -34,11 +34,14 @@ export default function App() {
             height: 80,
             paddingTop: 10,
           },
-        }}>
+        }}
+      >
         <Tab.Screen
           name="Home"
           component={HomeScreen}
           options={{
+            tabBarLabel: "Hem",
+            tabBarStyle: { display: "none" },
             tabBarIcon: ({ color }) => (
               <Ionicons name="home" size={24} color={color} />
             ),
@@ -48,10 +51,15 @@ export default function App() {
           name="Menu"
           component={MenuStack}
           options={{
+            tabBarLabel: "Meny",
             headerShown: false,
             popToTopOnBlur: true,
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="restaurant" size={24} color={color} />
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons
+                name={focused ? "restaurant" : "restaurant-outline"}
+                size={24}
+                color={color}
+              />
             ),
           }}
         />
@@ -59,8 +67,13 @@ export default function App() {
           name="AboutUs"
           component={AboutUs}
           options={{
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="people-circle-outline" size={24} color={color} />
+            tabBarLabel: "Om oss",
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons 
+              name={focused ? "people-circle" : "people-circle-outline"}
+              size={24} 
+              color={color} 
+              />
             ),
           }}
         />
