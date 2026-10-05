@@ -293,12 +293,12 @@ export const meals = [
 
 export const openingHours = [
   { day: "Måndag", hours: null },
-  { day: "Tisdag", hours: "12–21" },
-  { day: "Onsdag", hours: "12–21" },
-  { day: "Torsdag", hours: "12–21" },
-  { day: "Fredag", hours: "12–23" },
-  { day: "Lördag", hours: "12–23" },
-  { day: "Söndag", hours: "12–21" },
+  { day: "Tisdag", hours: "12-21" },
+  { day: "Onsdag", hours: "12-21" },
+  { day: "Torsdag", hours: "12-21" },
+  { day: "Fredag", hours: "12-23" },
+  { day: "Lördag", hours: "12-23" },
+  { day: "Söndag", hours: "12-21" },
 ];
 
 export const contactInfo = {
