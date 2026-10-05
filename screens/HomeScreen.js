@@ -1,41 +1,61 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "../constants/Color";
+import { useFonts } from "expo-font";
+import Logo from "../components/Logo";
+import ScreenBackground from "../components/ScreenBackground";
+
 
 export default function HomeScreen({ navigation }) {
+
+  const [fontsLoaded] = useFonts({
+    "Grenze": require("../assets/fonts/Grenze-VariableFont_wght.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Abuelita</Text>
-      <Text style={styles.subtitle}>Comida Con Amor</Text>
+    <ScreenBackground>
+      <View style={styles.container}>
+        <Logo />
 
-      <View style={styles.spacer} />
+        <View style={styles.titleGap} />
 
-      <Pressable
-        onPress={() => navigation.navigate("Menu")}
-        style={styles.primaryButton}
-      >
-        <Text style={styles.buttonText}>Meny</Text>
-      </Pressable>
+        <Text style={styles.subtitle}>Comida Con Amor</Text>
 
-      <Pressable style={styles.secondaryButton}>
-        <Text style={styles.buttonText}>Boka Bord</Text>
-      </Pressable>
+        <View style={styles.buttonGap} />
 
-      <Pressable style={styles.thirdButton}>
-        <Text style={styles.buttonText}>Hitta Hit</Text>
-      </Pressable>
-    </View>
+        <Pressable
+          onPress={() => navigation.navigate("Menu")}
+          style={styles.primaryButton}
+        >
+          <Text style={styles.buttonText}>Meny</Text>
+        </Pressable>
+
+        <Pressable style={styles.secondaryButton}>
+          <Text style={styles.buttonText}>Boka Bord</Text>
+        </Pressable>
+
+        <Pressable style={styles.thirdButton}>
+          <Text style={styles.buttonText}>Hitta Hit</Text>
+        </Pressable>
+      </View>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.cream,
+
     padding: 24,
     justifyContent: "center",
   },
 
   title: {
+    fontFamily: "Grenze",
     color: colors.darkGreen,
     fontSize: 48,
     fontWeight: "800",
@@ -43,16 +63,21 @@ const styles = StyleSheet.create({
   },
 
   subtitle: {
-    color: colors.darkGreen,
-    fontSize: 16,
+    fontFamily: "Grenze",
+    color: colors.turquoise,
+    fontSize: 24,
     fontWeight: "600",
     textAlign: "center",
     letterSpacing: 2,
     marginTop: 8,
   },
 
-  spacer: {
+  buttonGap: {
     height: 80,
+  },
+
+  titleGap: {
+    height: 20,
   },
 
   primaryButton: {
