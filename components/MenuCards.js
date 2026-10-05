@@ -1,5 +1,7 @@
-import { Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import { colors } from "../constants/Color";
+import { getMealImage } from "../data/MealImages";
+
 export default function MenuCards({ item, onPress }) {
   return (
     <Pressable
@@ -7,21 +9,52 @@ export default function MenuCards({ item, onPress }) {
       onPress={onPress}
       android_ripple={{ color: colors.yellow }}
     >
-      <Text style={styles.text}>{item.name}</Text>
+      <Image source={getMealImage(item.id, "thumb")} style={styles.image} />
+      <View style={styles.info}>
+        <Text style={styles.text}>{item.name}</Text>
+        <Text style={styles.description} numberOfLines={2}>
+          {item.description}
+        </Text>
+        <Text style={styles.price}>{item.price} kr</Text>
+      </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: colors.white,
-    padding: 16,
+    padding: 12,
     marginHorizontal: 16,
     marginVertical: 8,
     borderRadius: 8,
+    overflow: "hidden",
+  },
+  image: {
+    width: 80,
+    height: 80,
+    borderRadius: 8,
+  },
+  info: {
+    flex: 1,
+    marginLeft: 12,
   },
   text: {
     fontSize: 18,
     color: colors.darkGreen,
+  },
+  description: {
+    fontSize: 13,
+    color: colors.darkGreen,
+    opacity: 0.7,
+    marginTop: 2,
+  },
+  price: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: colors.pink,
+    marginTop: 4,
   },
 });
