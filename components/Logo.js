@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 export default function Logo() {
 
   const [fontsLoaded] = useFonts({
-    "Rye": require("../assets/fonts/Rye-Regular.ttf"),
+    "Grenze": require("../assets/fonts/Grenze-VariableFont_wght.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -28,14 +28,14 @@ export default function Logo() {
 
 const styles = StyleSheet.create({
   logo: {
-    fontFamily: "Rye",
+    fontFamily: "Grenze",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
 
   letter: {
-    fontFamily: "Rye",
+    fontFamily: "Grenze",
     color: colors.pink,
     fontSize: 54,
     fontWeight: "800",

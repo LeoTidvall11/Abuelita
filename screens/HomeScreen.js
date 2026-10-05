@@ -2,13 +2,13 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "../constants/Color";
 import { useFonts } from "expo-font";
 import Logo from "../components/Logo";
-import Subtitle from "../components/Subtitle";
+import ScreenBackground from "../components/ScreenBackground";
 
 
 export default function HomeScreen({ navigation }) {
 
   const [fontsLoaded] = useFonts({
-    "Rye": require("../assets/fonts/Rye-Regular.ttf"),
+    "Grenze": require("../assets/fonts/Grenze-VariableFont_wght.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -17,43 +17,45 @@ export default function HomeScreen({ navigation }) {
 
 
   return (
-    <View style={styles.container}>
-      <Logo />
+    <ScreenBackground>
+      <View style={styles.container}>
+        <Logo />
 
-      <View style={styles.titleGap} />
+        <View style={styles.titleGap} />
 
-      <Text style={styles.subtitle}>Comida Con Amor</Text>
+        <Text style={styles.subtitle}>Comida Con Amor</Text>
 
-      <View style={styles.buttonGap} />
+        <View style={styles.buttonGap} />
 
-      <Pressable
-        onPress={() => navigation.navigate("Menu")}
-        style={styles.primaryButton}
-      >
-        <Text style={styles.buttonText}>Meny</Text>
-      </Pressable>
+        <Pressable
+          onPress={() => navigation.navigate("Menu")}
+          style={styles.primaryButton}
+        >
+          <Text style={styles.buttonText}>Meny</Text>
+        </Pressable>
 
-      <Pressable style={styles.secondaryButton}>
-        <Text style={styles.buttonText}>Boka Bord</Text>
-      </Pressable>
+        <Pressable style={styles.secondaryButton}>
+          <Text style={styles.buttonText}>Boka Bord</Text>
+        </Pressable>
 
-      <Pressable style={styles.thirdButton}>
-        <Text style={styles.buttonText}>Hitta Hit</Text>
-      </Pressable>
-    </View>
+        <Pressable style={styles.thirdButton}>
+          <Text style={styles.buttonText}>Hitta Hit</Text>
+        </Pressable>
+      </View>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.cream,
+
     padding: 24,
     justifyContent: "center",
   },
 
   title: {
-    fontFamily: "Rye",
+    fontFamily: "Grenze",
     color: colors.darkGreen,
     fontSize: 48,
     fontWeight: "800",
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
   },
 
   subtitle: {
-    fontFamily: "Rye",
+    fontFamily: "Grenze",
     color: colors.turquoise,
     fontSize: 24,
     fontWeight: "600",
