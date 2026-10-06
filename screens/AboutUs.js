@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet, ScrollView, Linking, Platform } from "react-native";
+import { View, Text, Pressable, StyleSheet, ScrollView, Linking, Platform, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../constants/Color";
 import { openingHours, contactInfo } from "../data/Data";
@@ -18,9 +18,16 @@ const contactRows = [
 
     android:
         `geo:${latitude},${longitude}`
-   });
 
-   Linking.openURL(url);
+   });
+   Alert.alert(
+    "Hitta till Abuelita",
+    "Vill du öppna adressen i kartappen?",
+    [
+      { text: "Avbryt", style: "cancel"},
+      { text: "Öppna karta", onPress: () => Linking.openURL(url) },
+    ]
+   );
   }
 
 export default function AboutUs() {
