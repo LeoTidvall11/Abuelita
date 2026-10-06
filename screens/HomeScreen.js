@@ -38,7 +38,10 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonText}>Boka Bord</Text>
         </Pressable>
 
-        <Pressable style={styles.thirdButton}>
+        <Pressable
+          onPress={() => navigation.navigate("AboutUs")}
+          style={styles.thirdButton}
+        >
           <Text style={styles.buttonText}>Hitta Hit</Text>
         </Pressable>
       </View>
