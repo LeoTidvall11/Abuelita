@@ -3,35 +3,33 @@ import { colors } from "../constants/Color";
 import { getMealImage } from "../data/MealImages";
 import { spacing } from "../constants/Spacing";
 import FoodTags from "./labels/FoodTags";
+import PriceBadge from "./labels/PriceBadge";
 
 export default function MenuCards({ item, onPress }) {
   return (
     <Pressable
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}
       onPress={onPress}
-      android_ripple={{ color: colors.yellow }}>
-      <View style={styles.topBanner} />
+      android_ripple={{ color: colors.yellow }}
+    >
+      <Image
+        source={getMealImage(item.id, "detail")}
+        style={styles.image}
+        resizeMode="cover"
+      />
 
-      <View style={styles.contentRow}>
-        <Image source={getMealImage(item.id, "thumb")} style={styles.image} />
-        <View style={styles.infoContainer}>
-          <View>
-            <Text style={styles.title} numberOfLines={1}>
-              {item.name}
-            </Text>
-            <Text style={styles.description} numberOfLines={2}>
-              {item.shortDescription}
-            </Text>
-          </View>
+      <View style={styles.info}>
+        <Text style={styles.title} numberOfLines={1}>
+          {item.name}
+        </Text>
+        <View style={styles.titleUnderline} />
+        <Text style={styles.description} numberOfLines={2}>
+          {item.shortDescription}
+        </Text>
 
-          <View style={styles.bottomRow}>
-            <View style={styles.tagsWrapper}>
-              <FoodTags meal={item} small />
-            </View>
-            <View style={styles.priceBadge}>
-              <Text style={styles.priceText}>{item.price} kr</Text>
-            </View>
-          </View>
+        <View style={styles.bottomRow}>
+          <FoodTags meal={item} small />
+          <PriceBadge price={item.price} />
         </View>
       </View>
     </Pressable>
@@ -40,74 +38,52 @@ export default function MenuCards({ item, onPress }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
-    borderRadius: 16,
-    padding: 12,
     marginHorizontal: spacing.screenHorizontal,
-    marginVertical: 10,
-    borderWidth: 1,
+    marginBottom: spacing.cardGap,
+    backgroundColor: colors.white,
+    borderRadius: 20,
     overflow: "hidden",
-    elevation: 4,
+    elevation: 3,
     shadowColor: colors.darkGreen,
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0,
-    shadowRadius: 10,
-    borderColor: colors.yellow,
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
   },
   pressed: {
     opacity: 0.9,
-    transform: [{ scale: 0.95 }],
-  },
-  topBanner: {
-    height: 8,
-    backgroundColor: colors.pink,
-  },
-  contentRow: {
-    flexDirection: "row",
-    padding: 12,
+    transform: [{ scale: 0.98 }],
   },
   image: {
-    width: 110,
-    height: 110,
-    borderRadius: 12,
+    width: "100%",
+    height: undefined,
+    aspectRatio: 3 / 2,
   },
-  infoContainer: {
-    flex: 1,
-    marginLeft: 14,
-    justifyContent: "space-between",
+  info: {
+    padding: 14,
   },
   title: {
-    fontSize: 19,
-    color: colors.darkGreen,
+    fontSize: 20,
     fontWeight: "800",
-    letterSpacing: 0.3,
+    color: colors.darkGreen,
+  },
+  titleUnderline: {
+    width: 40,
+    height: 3,
+    borderRadius: 2,
+    marginTop: 6,
+    backgroundColor: colors.pink,
   },
   description: {
-    fontSize: 13,
+    fontSize: 14,
+    lineHeight: 20,
     color: colors.darkGreen,
-    opacity: 0.7,
-    marginTop: 4,
-    lineHeight: 18,
+    marginTop: 8,
   },
   bottomRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 10,
-  },
-  tagsWrapper: {
-    flex: 1,
-    marginRight: 8,
-  },
-  priceBadge: {
-    backgroundColor: colors.orange,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 12,
-  },
-  priceText: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: colors.white,
+    gap: 8,
+    marginTop: 12,
   },
 });
