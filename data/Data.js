@@ -302,7 +302,9 @@ export const openingHours = [
 ];
 
 export const contactInfo = {
-  address: "vasagatan 23, Valencia",
+  address: "Plaza del Mercado, 46001 Valencia",
+  latitude: 39.474159,
+  longitude: -0.378647,
   phone: "070-1337 42 12",
   email: "hola@abuelita.se",
 };
