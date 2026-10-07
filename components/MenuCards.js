@@ -3,7 +3,7 @@ import { colors } from "../constants/Color";
 import { getMealImage } from "../data/MealImages";
 import { spacing } from "../constants/Spacing";
 
-export default function MenuCards({ item, onPress }) {
+export default function MenuCards({ item, onPress, onAdd }) {
   return (
     <Pressable
       style={styles.container}
@@ -17,6 +17,11 @@ export default function MenuCards({ item, onPress }) {
           {item.description}
         </Text>
         <Text style={styles.price}>{item.price} kr</Text>
+
+        <Pressable onPress={onAdd}>
+          <Text>Lägg till</Text>
+        </Pressable>
+
       </View>
     </Pressable>
   );
