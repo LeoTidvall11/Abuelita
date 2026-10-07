@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../constants/Color";
 import { openingHours, contactInfo } from "../data/Data";
+import { spacing } from "../constants/Spacing";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const contactRows = [
   { icon: "location", text: contactInfo.address },
@@ -11,43 +13,50 @@ const contactRows = [
 
 export default function AboutUs() {
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Öppettider</Text>
+    <SafeAreaView
+      style={styles.screen}
+      contentContainerStyle={styles.container}
+    >
+      <ScrollView>
+        <Text style={styles.title}>Öppettider</Text>
 
-      <View style={styles.card}>
-        {openingHours.map((item, index) => {
-          const isLast = index === openingHours.length - 1;
+        <View style={styles.card}>
+          {openingHours.map((item, index) => {
+            const isLast = index === openingHours.length - 1;
 
-          return (
-            <View
-              key={item.day}
-              style={[styles.row, !isLast && styles.divider]}>
-              <Text style={styles.day}>{item.day}</Text>
-              <Text style={[styles.hours, !item.hours && styles.closed]}>
-                {item.hours ?? "Stängt"}
-              </Text>
-            </View>
-          );
-        })}
-      </View>
+            return (
+              <View
+                key={item.day}
+                style={[styles.row, !isLast && styles.divider]}
+              >
+                <Text style={styles.day}>{item.day}</Text>
+                <Text style={[styles.hours, !item.hours && styles.closed]}>
+                  {item.hours ?? "Stängt"}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
 
-      <Text style={[styles.title, styles.sectionTitle]}>Kontakt</Text>
+        <Text style={[styles.title, styles.sectionTitle]}>Kontakt</Text>
 
-      <View style={styles.card}>
-        {contactRows.map((item, index) => {
-          const isLast = index === contactRows.length - 1;
+        <View style={styles.card}>
+          {contactRows.map((item, index) => {
+            const isLast = index === contactRows.length - 1;
 
-          return (
-            <View
-              key={item.icon}
-              style={[styles.contactRow, !isLast && styles.divider]}>
-              <Ionicons name={item.icon} size={22} color={colors.pink} />
-              <Text style={styles.contactText}>{item.text}</Text>
-            </View>
-          );
-        })}
-      </View>
-    </ScrollView>
+            return (
+              <View
+                key={item.icon}
+                style={[styles.contactRow, !isLast && styles.divider]}
+              >
+                <Ionicons name={item.icon} size={22} color={colors.pink} />
+                <Text style={styles.contactText}>{item.text}</Text>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -58,16 +67,17 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    padding: 24,
-    marginTop: 24,
+    paddingHorizontal: spacing.screenHorizontal,
+    paddingTop: spacing.screenTop,
+    paddingBottom: 24,
   },
 
   title: {
     color: colors.turquoise,
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: "800",
     textAlign: "center",
-    marginBottom: 24,
+    marginBottom: spacing.titleBottom,
   },
 
   sectionTitle: {
