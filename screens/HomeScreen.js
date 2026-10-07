@@ -1,13 +1,33 @@
-import { View, Text, Image, StyleSheet, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+  Alert,
+  Linking,
+} from "react-native";
 import { colors } from "../constants/Color";
 import ScreenBackground from "../components/ScreenBackground";
+import { contactInfo } from "../data/Data";
 
 export default function HomeScreen({ navigation }) {
+  function bookTable() {
+    const email = contactInfo.email;
+    const subject = encodeURIComponent("Bordsbokning");
+    const body = encodeURIComponent(
+      "Hej! Jag vill boka bord.\n\nDatum:\nTid:\nAntal personer:\nNamn:\nTelefon:",
+    );
+    const url = `mailto:${email}?subject=${subject}&body=${body}`;
+    Alert.alert("Boka ett bord", "Vill du öppna mejlappen för att boka bord?", [
+      { text: "Avbryt", style: "cancel" },
+      { text: "Öppna mejlappen", onPress: () => Linking.openURL(url) },
+    ]);
+  }
 
   return (
     <ScreenBackground>
       <View style={styles.container}>
-
         <Image
           source={require("../assets/images/abuelita_logo.png")}
           style={styles.logo}
@@ -23,7 +43,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonText}>Meny</Text>
         </Pressable>
 
-        <Pressable style={styles.secondaryButton}>
+        <Pressable onPress={bookTable} style={styles.secondaryButton}>
           <Text style={styles.buttonText}>Boka Bord</Text>
         </Pressable>
 
@@ -33,7 +53,6 @@ export default function HomeScreen({ navigation }) {
         >
           <Text style={styles.buttonText}>Hitta Hit</Text>
         </Pressable>
-
       </View>
     </ScreenBackground>
   );
