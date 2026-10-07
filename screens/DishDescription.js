@@ -23,9 +23,10 @@ export default function DishDescription({ route }) {
   return (
     <View style={styles.container}>
       <ScrollView>
+        <View style={styles.topBanner}></View>
         <Image
           source={getMealImage(meal.id, "detail")}
-          style={{ width, height: (width * 2) / 3 }}
+          style={[styles.image, { width, height: (width * 2) / 3 }]}
           resizeMode="cover"
         />
 
@@ -57,6 +58,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.cream,
+  },
+  topBanner: {
+    marginTop: spacing.screenTop,
+  },
+  image: {
+    borderBottomRightRadius: 50,
+    marginTop: 40,
+    borderBottomWidth: 2,
+    borderBottomLeftRadius: 50,
+    elevation: 4,
+    shadowColor: colors.darkGreen,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0,
+    shadowRadius: 10,
+    borderColor: colors.yellow,
   },
   backButton: {
     position: "absolute",
