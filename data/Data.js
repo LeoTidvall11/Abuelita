@@ -7,6 +7,7 @@ export const categories = [
   { id: "drinks", title: "Drycker", icon: "cup-water" },
 ];
 
+// shortDescription visas på menykorten, description på produktsidan.
 export const meals = [
   // ---------- Förrätter ----------
   {
@@ -14,8 +15,9 @@ export const meals = [
     name: "Nachos con Queso",
     price: 89,
     category: "starters",
+    shortDescription: "Majschips med smält ost och jalapeños.",
     description:
-      "Krispiga majschips med smält ost, jalapeños, pico de gallo och gräddfil.",
+      "Krispiga, nygräddade majschips täckta med en generös mängd smält ost. Toppas med skivade jalapeños, färsk pico de gallo och en klick gräddfil. Perfekt att dela på medan du väntar på huvudrätten.",
     vegetarian: true,
     vegan: false,
     spicy: 1,
@@ -26,8 +28,9 @@ export const meals = [
     name: "Guacamole & Totopos",
     price: 79,
     category: "starters",
+    shortDescription: "Färsk guacamole med nygräddade majschips.",
     description:
-      "Färsk guacamole med lime och koriander, serveras med nygräddade majschips.",
+      "Mosad avokado med lime, koriander, rödlök och en aning chili, gjord på beställning så att den alltid är grön och fräsch. Serveras med totopos – krispiga majschips som vi friterar själva varje dag.",
     vegetarian: true,
     vegan: true,
     spicy: 0,
@@ -38,8 +41,9 @@ export const meals = [
     name: "Elote",
     price: 69,
     category: "starters",
+    shortDescription: "Grillad majskolv med limemajonnäs och ost.",
     description:
-      "Grillad majskolv med limemajonnäs, cotijaost, chilipulver och lime.",
+      "Mexikansk gatumat i sin bästa form. Majskolven grillas tills den får lite sotiga kanter och penslas sedan med krämig limemajonnäs. Strös över med smulad cotijaost, chilipulver och serveras med en limeklyfta.",
     vegetarian: true,
     vegan: false,
     spicy: 1,
@@ -52,8 +56,9 @@ export const meals = [
     name: "Tacos al Pastor",
     price: 139,
     category: "tacos",
+    shortDescription: "Marinerad fläsk med grillad ananas.",
     description:
-      "Marinerad fläskkarré med grillad ananas, lök och koriander på majstortilla.",
+      "Fläskkarré marinerad i achiote, torkad chili och kryddor, grillad och skuren i tunna skivor. Serveras på mjuka majstortillas med grillad ananas, finhackad lök och färsk koriander. Tre tacos per portion.",
     vegetarian: false,
     vegan: false,
     spicy: 2,
@@ -64,7 +69,9 @@ export const meals = [
     name: "Tacos de Carne Asada",
     price: 149,
     category: "tacos",
-    description: "Grillad oxfilé med salsa verde, rödlök och lime.",
+    shortDescription: "Grillad oxfilé med salsa verde.",
+    description:
+      "Mör oxfilé marinerad i lime, vitlök och kryddor och grillad över hög värme. Skärs i bitar och läggs på majstortillas med syrlig salsa verde, rödlök och lime. Tre tacos per portion.",
     vegetarian: false,
     vegan: false,
     spicy: 1,
@@ -75,8 +82,9 @@ export const meals = [
     name: "Tacos de Pollo Tinga",
     price: 135,
     category: "tacos",
+    shortDescription: "Dragen kyckling i rökig chipotlesås.",
     description:
-      "Dragen kyckling i rökig chipotle- och tomatsås, toppad med crema och avokado.",
+      "Kycklingen långkokas och dras isär innan den får puttra i en rökig sås på chipotle, tomat och lök. Toppas med crema och skivad avokado för en len kontrast till hettan. Tre tacos per portion.",
     vegetarian: false,
     vegan: false,
     spicy: 2,
@@ -87,8 +95,9 @@ export const meals = [
     name: "Tacos de Birria",
     price: 159,
     category: "tacos",
+    shortDescription: "Långkokt högrev med consommé att doppa i.",
     description:
-      "Långkokt högrev och smält ost i krispig tortilla, serveras med consommé att doppa i.",
+      "Högrev som långkokats i flera timmar med torkad chili och kryddor tills den faller isär. Läggs i tortillas med smält ost och steks krispiga. Serveras med en kopp het consommé att doppa i. Tre tacos per portion.",
     vegetarian: false,
     vegan: false,
     spicy: 2,
@@ -99,7 +108,9 @@ export const meals = [
     name: "Baja Fish Tacos",
     price: 145,
     category: "tacos",
-    description: "Friterad torsk med kålsallad, chipotlemajonnäs och lime.",
+    shortDescription: "Friterad torsk med kålsallad och lime.",
+    description:
+      "Inspirerade av fiskstånden i Baja California. Torsk i ett frasigt ölsmet, serverad med krispig kålsallad, chipotlemajonnäs och färsk lime. Tre tacos per portion.",
     vegetarian: false,
     vegan: false,
     spicy: 1,
@@ -110,8 +121,9 @@ export const meals = [
     name: "Tacos de Hongos",
     price: 129,
     category: "tacos",
+    shortDescription: "Stekt svamp med vitlök, chili och feta.",
     description:
-      "Stekt svamp med vitlök och chili, fetaost, picklad rödlök och koriander.",
+      "En blandning av svamp stekt i smör med vitlök och chili tills den får fin färg. Toppas med smulad fetaost, picklad rödlök och färsk koriander. Ett mustigt vegetariskt alternativ. Tre tacos per portion.",
     vegetarian: true,
     vegan: false,
     spicy: 1,
@@ -122,7 +134,9 @@ export const meals = [
     name: "Tacos de Coliflor",
     price: 125,
     category: "tacos",
-    description: "Rostad blomkål med chipotle, avokadokräm och granatäpple.",
+    shortDescription: "Rostad blomkål med chipotle och granatäpple.",
+    description:
+      "Blomkål vänd i chipotle och rostad i ugnen tills den blir gyllene och lite krispig. Serveras med krämig avokadokräm och granatäppelkärnor som ger friskhet och sötma. Helt vegansk. Tre tacos per portion.",
     vegetarian: true,
     vegan: true,
     spicy: 2,
@@ -135,8 +149,9 @@ export const meals = [
     name: "Burrito de Pollo",
     price: 149,
     category: "burritos",
+    shortDescription: "Kyckling, ris, bönor och ost i vetetortilla.",
     description:
-      "Vetetortilla fylld med kyckling, ris, svarta bönor, ost och pico de gallo.",
+      "En rejäl burrito fylld med kryddig kyckling, mexikanskt ris, svarta bönor, smält ost och pico de gallo. Rullas i en stor vetetortilla och grillas lätt så att den håller ihop. Mättande och perfekt som lunch.",
     vegetarian: false,
     vegan: false,
     spicy: 1,
@@ -147,8 +162,9 @@ export const meals = [
     name: "Burrito Vegano",
     price: 139,
     category: "burritos",
+    shortDescription: "Bönor, ris, grillade grönsaker och guacamole.",
     description:
-      "Svarta bönor, mexikanskt ris, grillad paprika, majs och guacamole.",
+      "Svarta bönor, mexikanskt ris, grillad paprika och majs, rullat i en vetetortilla tillsammans med en generös mängd guacamole. Helt vegansk och full av smak.",
     vegetarian: true,
     vegan: true,
     spicy: 1,
@@ -159,8 +175,9 @@ export const meals = [
     name: "Quesadilla de Queso",
     price: 119,
     category: "burritos",
+    shortDescription: "Grillad tortilla med smält ost och jalapeños.",
     description:
-      "Grillad vetetortilla med smält ost, jalapeños och salsa roja.",
+      "Vetetortilla fylld med en blandning av smältande ostar och jalapeños, grillad tills den är gyllene och krispig på utsidan. Skärs i trianglar och serveras med salsa roja att doppa i.",
     vegetarian: true,
     vegan: false,
     spicy: 1,
@@ -173,7 +190,9 @@ export const meals = [
     name: "Arroz Mexicano",
     price: 39,
     category: "sides",
-    description: "Tomatkokt ris med lök och vitlök.",
+    shortDescription: "Tomatkokt ris med lök och vitlök.",
+    description:
+      "Riset fräses först i olja tills det får lite färg och kokas sedan i en buljong av tomat, lök och vitlök. Ett klassiskt tillbehör som passar till alla rätter på menyn.",
     vegetarian: true,
     vegan: true,
     spicy: 0,
@@ -184,7 +203,9 @@ export const meals = [
     name: "Frijoles Refritos",
     price: 39,
     category: "sides",
-    description: "Krämiga, stekta pintobönor.",
+    shortDescription: "Krämiga, stekta pintobönor.",
+    description:
+      "Pintobönor som kokas mjuka, mosas och steks med lök och vitlök till en len och krämig konsistens. Ett självklart tillbehör till tacos och burritos.",
     vegetarian: true,
     vegan: true,
     spicy: 0,
@@ -195,7 +216,9 @@ export const meals = [
     name: "Pico de Gallo",
     price: 29,
     category: "sides",
-    description: "Färsk salsa på tomat, lök, koriander och lime.",
+    shortDescription: "Färsk salsa på tomat, lök och koriander.",
+    description:
+      "En frisk, grovhackad salsa på mogna tomater, rödlök, koriander, jalapeño och pressad lime. Gör sig bäst som topping på tacos eller med chips.",
     vegetarian: true,
     vegan: true,
     spicy: 1,
@@ -208,8 +231,9 @@ export const meals = [
     name: "Churros con Chocolate",
     price: 69,
     category: "desserts",
+    shortDescription: "Churros med kanelsocker och chokladsås.",
     description:
-      "Frasiga churros med kanelsocker och varm chokladsås att doppa i.",
+      "Nyfriterade churros, frasiga på utsidan och mjuka inuti, vända i kanelsocker. Serveras med en kopp tjock, varm chokladsås att doppa i. En favorit som avslutning på måltiden.",
     vegetarian: true,
     vegan: false,
     spicy: 0,
@@ -220,8 +244,9 @@ export const meals = [
     name: "Pastel Tres Leches",
     price: 75,
     category: "desserts",
+    shortDescription: "Saftig kaka dränkt i tre sorters mjölk.",
     description:
-      "Saftig sockerkaka dränkt i tre sorters mjölk, toppad med vispgrädde.",
+      "En luftig sockerkaka som dränks i en blandning av mjölk, kondenserad mjölk och grädde tills den är riktigt saftig. Toppas med lätt vispad grädde och en aning kanel.",
     vegetarian: true,
     vegan: false,
     spicy: 0,
@@ -234,7 +259,9 @@ export const meals = [
     name: "Jarritos Mandarina",
     price: 39,
     category: "drinks",
-    description: "Mexikansk läsk med mandarinsmak.",
+    shortDescription: "Mexikansk läsk med mandarinsmak.",
+    description:
+      "Mexikos klassiska läsk med smak av mandarin. Söt, fruktig och kolsyrad – serveras väl kyld i glasflaska.",
     vegetarian: true,
     vegan: true,
     spicy: 0,
@@ -246,7 +273,9 @@ export const meals = [
     name: "Jarritos Tamarindo",
     price: 39,
     category: "drinks",
-    description: "Mexikansk läsk med söt-syrlig tamarindsmak.",
+    shortDescription: "Mexikansk läsk med tamarindsmak.",
+    description:
+      "Läsk smaksatt med tamarind, en frukt med söt och lätt syrlig smak som är populär i hela Mexiko. Serveras väl kyld i glasflaska.",
     vegetarian: true,
     vegan: true,
     spicy: 0,
@@ -258,7 +287,9 @@ export const meals = [
     name: "Horchata",
     price: 45,
     category: "drinks",
-    description: "Kall risdryck med kanel och vanilj.",
+    shortDescription: "Kall risdryck med kanel och vanilj.",
+    description:
+      "En traditionell mexikansk dryck gjord på ris som blötläggs och mixas med kanel, vanilj och mjölk. Krämig, lätt söt och svalkande – särskilt god till starka rätter.",
     vegetarian: true,
     vegan: false,
     spicy: 0,
@@ -270,7 +301,9 @@ export const meals = [
     name: "Sol",
     price: 69,
     category: "drinks",
-    description: "Ljus mexikansk lager, serveras med lime. 4,5 %.",
+    shortDescription: "Ljus mexikansk lager. 4,5 %.",
+    description:
+      "En ljus och lättdrucken mexikansk lager med frisk, mild smak. Serveras iskall med en limeklyfta. 4,5 % alkohol.",
     vegetarian: true,
     vegan: true,
     spicy: 0,
@@ -282,7 +315,9 @@ export const meals = [
     name: "Dos Equis Lager",
     price: 72,
     category: "drinks",
-    description: "Frisk och lätt mexikansk lager. 4,2 %.",
+    shortDescription: "Frisk och lätt mexikansk lager. 4,2 %.",
+    description:
+      "En klassisk mexikansk lager med frisk och lätt maltig smak och en ren eftersmak. Passar utmärkt till tacos. 4,2 % alkohol.",
     vegetarian: true,
     vegan: true,
     spicy: 0,
