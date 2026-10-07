@@ -3,46 +3,31 @@ import {
   Text,
   Image,
   ScrollView,
-  Pressable,
   StyleSheet,
   useWindowDimensions,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
 import { meals } from "../data/Data";
 import { getMealImage } from "../data/MealImages";
 import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
-import { SafeAreaView } from "react-native-safe-area-context";
+import FoodTags from "../components/labels/FoodTags.js";
+import BackButton from "../components/buttons/BackButton";
 
-export default function DishDescription({ route, navigation }) {
+export default function DishDescription({ route }) {
   const { mealId } = route.params;
   const meal = meals.find((m) => m.id === mealId);
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
 
-  if (!meal) return null;
-
-  const tags = [
-    meal.vegan ? "Vegansk" : meal.vegetarian ? "Vegetarisk" : null,
-    meal.spicy > 0 ? "🌶".repeat(meal.spicy) : null,
-    meal.alcohol ? "Innehåller alkohol" : null,
-  ].filter(Boolean);
-
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+    <View style={styles.container}>
+      <ScrollView>
         <Image
           source={getMealImage(meal.id, "detail")}
           style={{ width, height: (width * 2) / 3 }}
           resizeMode="cover"
         />
-        <Pressable
-          style={[styles.backButton, { top: insets.top + 8 }]}
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons name="chevron-back" size={24} color={colors.darkGreen} />
-        </Pressable>
 
         <View style={styles.content}>
           <View style={styles.titleRow}>
@@ -50,15 +35,7 @@ export default function DishDescription({ route, navigation }) {
             <Text style={styles.price}>{meal.price} kr</Text>
           </View>
 
-          {tags.length > 0 && (
-            <View style={styles.tags}>
-              {tags.map((tag) => (
-                <Text key={tag} style={styles.tag}>
-                  {tag}
-                </Text>
-              ))}
-            </View>
-          )}
+          <FoodTags meal={meal} />
 
           <Text style={styles.description}>{meal.description}</Text>
 
@@ -68,7 +45,11 @@ export default function DishDescription({ route, navigation }) {
           </Text>
         </View>
       </ScrollView>
-    </SafeAreaView>
+
+      <BackButton
+        style={[styles.backButton, { top: insets.top + spacing.screenTop }]}
+      />
+    </View>
   );
 }
 
@@ -80,9 +61,6 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     left: spacing.screenHorizontal,
-    backgroundColor: colors.white,
-    borderRadius: 20,
-    padding: 8,
   },
   content: {
     paddingHorizontal: spacing.screenHorizontal,
@@ -104,21 +82,6 @@ const styles = StyleSheet.create({
     color: colors.pink,
     marginLeft: 12,
   },
-  tags: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 8,
-    marginTop: 12,
-  },
-  tag: {
-    backgroundColor: colors.turquoise,
-    color: colors.white,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-    overflow: "hidden",
-    fontSize: 13,
-  },
   description: {
     fontSize: 16,
     lineHeight: 24,
@@ -130,8 +93,5 @@ const styles = StyleSheet.create({
     color: colors.darkGreen,
     opacity: 0.7,
     marginTop: 16,
-  },
-  scrollContent: {
-    paddingTop: spacing.screenTop,
   },
 });
