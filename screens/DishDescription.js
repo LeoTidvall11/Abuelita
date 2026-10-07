@@ -11,12 +11,16 @@ import { meals } from "../data/Data";
 import { getMealImage } from "../data/MealImages";
 import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useContext } from "react";
+import { MealCalculatorContext } from "../context/MealCalculatorContext";
 import FoodTags from "../components/labels/FoodTags.js";
 import BackButton from "../components/buttons/BackButton";
 
 export default function DishDescription({ route }) {
   const { mealId } = route.params;
   const meal = meals.find((m) => m.id === mealId);
+  const { addDish } = useContext(MealCalculatorContext);
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
 
@@ -38,6 +42,15 @@ export default function DishDescription({ route }) {
           <FoodTags meal={meal} />
 
           <Text style={styles.description}>{meal.description}</Text>
+
+          <Pressable
+            style={styles.addButton}
+            onPress={() => addDish(meal)}
+          >
+            <Text style={styles.addButtonText}>
+              Lägg till i måltid
+            </Text>
+          </Pressable>
 
           <Text style={styles.allergens}>
             Allergener:{" "}
@@ -93,5 +106,22 @@ const styles = StyleSheet.create({
     color: colors.darkGreen,
     opacity: 0.7,
     marginTop: 16,
+  },
+  scrollContent: {
+    paddingTop: spacing.screenTop,
+  },
+  addButton: {
+    backgroundColor: colors.turquoise,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    alignItems: "center",
+    marginTop: 24,
+  },
+
+  addButtonText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

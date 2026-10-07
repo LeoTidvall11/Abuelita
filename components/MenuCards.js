@@ -4,21 +4,27 @@ import { getMealImage } from "../data/MealImages";
 import { spacing } from "../constants/Spacing";
 import FoodTags from "./labels/FoodTags";
 
-export default function MenuCards({ item, onPress }) {
+export default function MenuCards({ item, onPress, onAdd }) {
   return (
     <Pressable
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}
       onPress={onPress}
-      android_ripple={{ color: colors.yellow }}>
+      android_ripple={{ color: colors.yellow }}
+    >
       <View style={styles.topBanner} />
 
       <View style={styles.contentRow}>
-        <Image source={getMealImage(item.id, "thumb")} style={styles.image} />
+        <Image
+          source={getMealImage(item.id, "thumb")}
+          style={styles.image}
+        />
+
         <View style={styles.infoContainer}>
           <View>
             <Text style={styles.title} numberOfLines={1}>
               {item.name}
             </Text>
+
             <Text style={styles.description} numberOfLines={2}>
               {item.shortDescription}
             </Text>
@@ -28,10 +34,15 @@ export default function MenuCards({ item, onPress }) {
             <View style={styles.tagsWrapper}>
               <FoodTags meal={item} small />
             </View>
+
             <View style={styles.priceBadge}>
               <Text style={styles.priceText}>{item.price} kr</Text>
             </View>
           </View>
+
+          <Pressable onPress={onAdd}>
+            <Text>Lägg till</Text>
+          </Pressable>
         </View>
       </View>
     </Pressable>
