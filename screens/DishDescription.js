@@ -5,12 +5,15 @@ import {
   ScrollView,
   StyleSheet,
   useWindowDimensions,
+  Pressable,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { meals } from "../data/Data";
 import { getMealImage } from "../data/MealImages";
 import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
+import { useContext } from "react";
+import { MealCalculatorContext } from "../context/MealCalculatorContext";
 import FoodTags from "../components/labels/FoodTags.js";
 import PriceBadge from "../components/labels/PriceBadge.js";
 import BackButton from "../components/buttons/BackButton";
@@ -20,6 +23,7 @@ const CARD_OVERLAP = 30;
 export default function DishDescription({ route }) {
   const { mealId } = route.params;
   const meal = meals.find((m) => m.id === mealId);
+  const { addDish } = useContext(MealCalculatorContext);
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
 
@@ -33,8 +37,10 @@ export default function DishDescription({ route }) {
         />
 
         <View style={styles.card}>
-          <Text style={styles.title}>{meal.name}</Text>
-          <View style={styles.titleUnderline} />
+          <View style={styles.titleWrapper}>
+            <Text style={styles.title}>{meal.name}</Text>
+            <View style={styles.titleUnderline} />
+          </View>
 
           <View style={styles.infoRow}>
             <FoodTags meal={meal} />
@@ -42,6 +48,10 @@ export default function DishDescription({ route }) {
           </View>
 
           <Text style={styles.description}>{meal.description}</Text>
+
+          <Pressable style={styles.addButton} onPress={() => addDish(meal)}>
+            <Text style={styles.addButtonText}>Lägg till i måltid</Text>
+          </Pressable>
 
           <Text style={styles.sectionTitle}>Allergener</Text>
           <Text style={styles.allergens}>
@@ -78,15 +88,15 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: CARD_OVERLAP,
     borderTopRightRadius: CARD_OVERLAP,
   },
+  titleWrapper: {
+    alignSelf: "flex-start",
+  },
   title: {
     fontSize: 26,
     fontWeight: "800",
     color: colors.darkGreen,
-    borderBottomColor: colors.pink,
-    borderBottomWidth: 2,
   },
   titleUnderline: {
-    width: 100,
     height: 4,
     borderRadius: 2,
     marginTop: 8,
@@ -116,5 +126,19 @@ const styles = StyleSheet.create({
     marginTop: 4,
     fontSize: 14,
     color: colors.darkGreen,
+  },
+  addButton: {
+    backgroundColor: colors.turquoise,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    alignItems: "center",
+    marginTop: 24,
+  },
+
+  addButtonText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

@@ -5,13 +5,12 @@ import { spacing } from "../constants/Spacing";
 import FoodTags from "./labels/FoodTags";
 import PriceBadge from "./labels/PriceBadge";
 
-export default function MenuCards({ item, onPress }) {
+export default function MenuCards({ item, onPress, onAdd }) {
   return (
     <Pressable
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}
       onPress={onPress}
-      android_ripple={{ color: colors.yellow }}
-    >
+      android_ripple={{ color: colors.yellow }}>
       <Image
         source={getMealImage(item.id, "detail")}
         style={styles.image}
@@ -31,6 +30,9 @@ export default function MenuCards({ item, onPress }) {
           <FoodTags meal={item} small />
           <PriceBadge price={item.price} />
         </View>
+        <Pressable onPress={onAdd}>
+          <Text>Lägg till</Text>
+        </Pressable>
       </View>
     </Pressable>
   );
