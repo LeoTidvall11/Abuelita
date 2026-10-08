@@ -1,50 +1,43 @@
-import { Text, StyleSheet, FlatList, Pressable, View } from "react-native";
-import { categories, meals } from "../data/Data";
-import MenuCards from "../components/MenuCards";
-import { colors } from "../constants/Color";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { spacing } from "../constants/Spacing";
+import { View, Text, FlatList, StyleSheet, Pressable } from "react-native";
+import { useFavorites } from "../context/FavoritesContext";
 import { useContext } from "react";
 import { MealCalculatorContext } from "../context/MealCalculatorContext";
-import { Ionicons } from "@expo/vector-icons";
+import MenuCards from "../components/MenuCards";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { colors } from "../constants/Color";
+import { spacing } from "../constants/Spacing";
 import BackButton, { BACK_BUTTON_SIZE } from "../components/buttons/BackButton";
-import { fonts } from "../constants/Fonts";
+import { Ionicons } from "@expo/vector-icons";
 
-export default function MenuScreen({ navigation, route }) {
+export default function FavoritesScreen({ navigation }) {
+  const { favorites } = useFavorites();
+
   const context = useContext(MealCalculatorContext);
-
   const { selectedDishes, addDish } = context;
-
-  const categoryId = route.params?.categoryId;
-  const category = categories.find((c) => c.id === categoryId);
-  const filteredMeals = meals.filter((meal) => meal.category === categoryId);
 
   const total = selectedDishes.reduce(
     (sum, dish) => sum + dish.price * dish.quantity,
     0,
-  );
-  const totalQuantity = selectedDishes.reduce(
-    (sum, dish) => sum + dish.quantity,
-    0
   );
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <BackButton />
-        <Text style={styles.text} accessibilityRole="header">
-          {category?.title ?? "Meny"}
+
+        <Text style={styles.title} accessibilityRole="header">
+          Favoriter
         </Text>
-        <Pressable
-          onPress={() => navigation.navigate("Favorites")}
-          accessibilityRole="button"
-          accessibilityLabel="Öppna favoriter"
-        >
-          <Ionicons name="heart" size={28} color={colors.pink} />
-        </Pressable>
+
+        <View style={styles.headerSpacer} />
       </View>
+
+      {favorites.length === 0 && (
+        <Text style={styles.emptyText}>Du har inga favoriter ännu</Text>
+      )}
+
       <FlatList
-        data={filteredMeals}
+        data={favorites}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
           <MenuCards
@@ -70,7 +63,7 @@ export default function MenuScreen({ navigation, route }) {
           <Ionicons name="restaurant-outline" size={24} color={colors.white} />
 
           <Text style={styles.mealBarText}>
-            Min måltid · {totalQuantity} rätter · {total} kr
+            Min måltid · {selectedDishes.length} rätter · {total} kr
           </Text>
 
           <Ionicons name="chevron-forward" size={22} color={colors.white} />
@@ -88,23 +81,25 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
     paddingHorizontal: spacing.screenHorizontal,
-    marginTop: spacing.screenTop,
-    marginBottom: spacing.titleBottom,
-
+    paddingTop: spacing.screenTop,
+    paddingBottom: spacing.titleBottom,
   },
-  headerSpacer: {
-    width: BACK_BUTTON_SIZE,
-  },
-  text: {
+  title: {
     flex: 1,
-    fontSize: 36,
+    textAlign: "center",
+    fontSize: 32,
     fontWeight: "800",
     color: colors.turquoise,
+  },
+  headerSpacer: {
+    width: 40,
+  },
+  emptyText: {
     textAlign: "center",
-    fontFamily: fonts.grenze,
-
+    color: colors.darkGreen,
+    fontSize: 16,
+    marginTop: 40,
   },
   mealBar: {
     backgroundColor: colors.turquoise,
