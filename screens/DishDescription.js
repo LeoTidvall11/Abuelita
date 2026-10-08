@@ -13,12 +13,16 @@ import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
 import FoodTags from "../components/labels/FoodTags.js";
 import BackButton from "../components/buttons/BackButton";
+import { useFavorites } from "../context/FavoritesContext";
 
 export default function DishDescription({ route }) {
   const { mealId } = route.params;
   const meal = meals.find((m) => m.id === mealId);
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
+  const { favorites, toggleFavorite } = useFavorites();
+
+  const isFavorite = favorites.some((favorite) => favorite.id === meal.id);
 
   return (
     <View style={styles.container}>
@@ -33,6 +37,13 @@ export default function DishDescription({ route }) {
           <View style={styles.titleRow}>
             <Text style={styles.text}>{meal.name}</Text>
             <Text style={styles.price}>{meal.price} kr</Text>
+            <Pressable onPress={() => toggleFavorite(meal)}>
+              <Ionicons
+                name={isFavorite ? "heart" : "heart-outline"}
+                size={28}
+                color={colors.pink}
+              />
+            </Pressable>
           </View>
 
           <FoodTags meal={meal} />
