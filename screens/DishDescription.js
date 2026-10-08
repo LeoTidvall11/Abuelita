@@ -21,13 +21,13 @@ import { Ionicons } from "@expo/vector-icons";
 
 const CARD_OVERLAP = 30;
 
-export default function DishDescription({ route }) {
+export default function DishDescription({ route, navigation }) {
   const { mealId } = route.params;
   const meal = meals.find((m) => m.id === mealId);
   const { selectedDishes, addDish } = useContext(MealCalculatorContext);
   const total = selectedDishes.reduce(
     (sum, dish) => sum + dish.price * dish.quantity,
-    0
+    0,
   );
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
@@ -79,23 +79,14 @@ export default function DishDescription({ route }) {
       {selectedDishes.length > 0 && (
         <Pressable
           style={styles.mealBar}
-          onPress={() => navigation.navigate("Meal")}
-        >
-          <Ionicons
-            name="restaurant-outline"
-            size={24}
-            color={colors.white}
-          />
+          onPress={() => navigation.navigate("Meal")}>
+          <Ionicons name="restaurant-outline" size={24} color={colors.white} />
 
           <Text style={styles.mealBarText}>
             Min måltid · {selectedDishes.length} rätter · {total} kr
           </Text>
 
-          <Ionicons
-            name="chevron-forward"
-            size={22}
-            color={colors.white}
-          />
+          <Ionicons name="chevron-forward" size={22} color={colors.white} />
         </Pressable>
       )}
       <BackButton
