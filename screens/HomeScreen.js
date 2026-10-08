@@ -30,17 +30,20 @@ export default function HomeScreen({ navigation }) {
         <Pressable
           onPress={() => navigation.navigate("Menu")}
           style={styles.primaryButton}
+          accessibilityRole="button"
         >
           <Text style={styles.buttonText}>Meny</Text>
         </Pressable>
 
-        <Pressable style={styles.secondaryButton}>
+        <Pressable style={styles.secondaryButton} accessibilityRole="button">
           <Text style={styles.buttonText}>Boka Bord</Text>
         </Pressable>
 
         <Pressable
           onPress={() => navigation.navigate("AboutUs")}
           style={styles.thirdButton}
+          accessibilityRole="button"
+          accessibilityHint="Visar adress och öppettider"
         >
           <Text style={styles.buttonText}>Hitta Hit</Text>
         </Pressable>

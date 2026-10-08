@@ -34,11 +34,15 @@ export default function DishDescription({ route }) {
           source={getMealImage(meal.id, "detail")}
           style={{ width, height: width * 0.75 + insets.top }}
           resizeMode="cover"
+          accessibilityRole="image"
+          accessibilityLabel={`Bild på ${meal.name}`}
         />
 
         <View style={styles.card}>
           <View style={styles.titleWrapper}>
-            <Text style={styles.title}>{meal.name}</Text>
+            <Text style={styles.title} accessibilityRole="header">
+              {meal.name}
+            </Text>
             <View style={styles.titleUnderline} />
           </View>
 
@@ -49,11 +53,16 @@ export default function DishDescription({ route }) {
 
           <Text style={styles.description}>{meal.description}</Text>
 
-          <Pressable style={styles.addButton} onPress={() => addDish(meal)}>
+          <Pressable
+            style={styles.addButton}
+            onPress={() => addDish(meal)}
+            accessibilityRole="button">
             <Text style={styles.addButtonText}>Lägg till i måltid</Text>
           </Pressable>
 
-          <Text style={styles.sectionTitle}>Allergener</Text>
+          <Text style={styles.sectionTitle} accessibilityRole="header">
+            Allergener
+          </Text>
           <Text style={styles.allergens}>
             {meal.allergens.length > 0 ? meal.allergens.join(", ") : "Inga"}
           </Text>

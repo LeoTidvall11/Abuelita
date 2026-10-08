@@ -26,7 +26,9 @@ export default function MenuScreen({ navigation, route }) {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <BackButton />
-        <Text style={styles.text}>Meny</Text>
+        <Text style={styles.text} accessibilityRole="header">
+          Meny
+        </Text>
         <View style={styles.headerSpacer} />
       </View>
       <FlatList
@@ -58,6 +60,9 @@ export default function MenuScreen({ navigation, route }) {
       <Pressable
         style={styles.mealBar}
         onPress={() => navigation.navigate("Meal")}
+        accessibilityRole="button"
+        accessibilityLabel={`Min måltid, ${selectedDishes.length} rätter, totalt ${total} kronor`}
+        accessibilityHint="Visar din måltid"
       >
         <Text style={styles.mealBarText}>
           Min måltid · {selectedDishes.length} rätter · {total} kr

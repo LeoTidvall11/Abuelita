@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { AccessibilityInfo } from "react-native";
 
 export const MealCalculatorContext = createContext();
 
@@ -27,6 +28,8 @@ export function MealCalculatorProvider({ children }) {
         { ...dish, quantity: 1 },
       ]);
     }
+
+    AccessibilityInfo.announceForAccessibility(`${dish.name} tillagd i måltiden`);
   };
 
 

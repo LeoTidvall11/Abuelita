@@ -11,6 +11,10 @@ export function getMealTags(meal) {
   ].filter(Boolean);
 }
 
+function getTagLabel(tag) {
+  return tag.startsWith("🌶") ? `Styrka ${[...tag].length}` : tag;
+}
+
 export default function FoodTags({ meal, small = false }) {
   const tags = getMealTags(meal);
   if (tags.length === 0) return null;
@@ -18,7 +22,10 @@ export default function FoodTags({ meal, small = false }) {
   return (
     <View style={styles.tags}>
       {tags.map((tag) => (
-        <Text key={tag} style={[styles.tag, small && styles.tagSmall]}>
+        <Text
+          key={tag}
+          style={[styles.tag, small && styles.tagSmall]}
+          accessibilityLabel={getTagLabel(tag)}>
           {tag}
         </Text>
       ))}

@@ -6,7 +6,12 @@ import { spacing } from "../constants/Spacing";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const contactRows = [
-  { icon: "location", text: contactInfo.address, onPress: openMap },
+  {
+    icon: "location",
+    text: contactInfo.address,
+    onPress: openMap,
+    hint: "Öppnar adressen i kartappen",
+  },
   { icon: "call", text: contactInfo.phone },
   { icon: "mail", text: contactInfo.email },
 ];
@@ -40,7 +45,9 @@ export default function AboutUs() {
       contentContainerStyle={styles.container}
     >
       <ScrollView>
-        <Text style={styles.title}>Öppettider</Text>
+        <Text style={styles.title} accessibilityRole="header">
+          Öppettider
+        </Text>
 
         <View style={styles.card}>
           {openingHours.map((item, index) => {
@@ -50,6 +57,7 @@ export default function AboutUs() {
               <View
                 key={item.day}
                 style={[styles.row, !isLast && styles.divider]}
+                accessible
               >
                 <Text style={styles.day}>{item.day}</Text>
                 <Text style={[styles.hours, !item.hours && styles.closed]}>
@@ -60,7 +68,11 @@ export default function AboutUs() {
           })}
         </View>
 
-        <Text style={[styles.title, styles.sectionTitle]}>Kontakt</Text>
+        <Text
+          style={[styles.title, styles.sectionTitle]}
+          accessibilityRole="header">
+          Kontakt
+        </Text>
 
         <View style={styles.card}>
           {contactRows.map((item, index) => {
@@ -70,6 +82,9 @@ export default function AboutUs() {
               <Pressable
               key={item.icon}
               onPress={item.onPress}
+              accessibilityRole={item.onPress ? "button" : "text"}
+              accessibilityLabel={item.text}
+              accessibilityHint={item.hint}
               style={[styles.contactRow, !isLast && styles.divider]}>
               <Ionicons name={item.icon} size={22} color={colors.pink} />
               <Text style={styles.contactText}>{item.text}</Text>

@@ -14,13 +14,18 @@ export default function MealScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Min måltid</Text>
+      <Text style={styles.title} accessibilityRole="header">
+        Min måltid
+      </Text>
 
       <ScrollView contentContainerStyle={styles.list}>
         {selectedDishes.map((dish) => (
           <View key={dish.id} style={styles.dish}>
 
-            <View style={styles.dishInfo}>
+            <View
+              style={styles.dishInfo}
+              accessible
+              accessibilityLabel={`${dish.name}, ${dish.quantity} st, ${dish.price * dish.quantity} kronor`}>
               <Text style={styles.name}>{dish.name}</Text>
 
               <Text style={styles.price}>
@@ -32,17 +37,26 @@ export default function MealScreen() {
               <Pressable
                 style={styles.quantityButton}
                 onPress={() => decreaseQuantity(dish.id)}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={`Minska antal ${dish.name}`}
               >
                 <Text style={styles.quantityButtonText}>−</Text>
               </Pressable>
 
-              <Text style={styles.quantity}>
+              <Text
+                style={styles.quantity}
+                accessibilityLabel={`Antal: ${dish.quantity}`}
+                accessibilityLiveRegion="polite">
                 {dish.quantity}
               </Text>
 
               <Pressable
                 style={styles.quantityButton}
                 onPress={() => increaseQuantity(dish.id)}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={`Öka antal ${dish.name}`}
               >
                 <Text style={styles.quantityButtonText}>+</Text>
               </Pressable>
@@ -52,7 +66,11 @@ export default function MealScreen() {
         ))}
       </ScrollView>
 
-      <View style={styles.totalContainer}>
+      <View
+        style={styles.totalContainer}
+        accessible
+        accessibilityLabel={`Totalt ${total} kronor`}
+        accessibilityLiveRegion="polite">
         <Text style={styles.totalLabel}>Totalt</Text>
         <Text style={styles.total}>{total} kr</Text>
       </View>

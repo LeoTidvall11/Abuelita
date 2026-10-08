@@ -10,6 +10,13 @@ export default function MenuCards({ item, onPress, onAdd }) {
     <Pressable
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}
       onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`${item.name}, ${item.price} kronor. ${item.shortDescription}`}
+      accessibilityHint="Öppnar rättens beskrivning"
+      accessibilityActions={[{ name: "add", label: "Lägg till i måltid" }]}
+      onAccessibilityAction={(event) => {
+        if (event.nativeEvent.actionName === "add") onAdd();
+      }}
       android_ripple={{ color: colors.yellow }}>
       <Image
         source={getMealImage(item.id, "detail")}
@@ -18,21 +25,28 @@ export default function MenuCards({ item, onPress, onAdd }) {
       />
 
       <View style={styles.info}>
-        <Text style={styles.title} numberOfLines={1}>
-          {item.name}
-        </Text>
-        <View style={styles.titleUnderline} />
+        <View style={styles.topRow}>
+          <View style={styles.titleWrapper}>
+            <Text style={styles.title}>{item.name}</Text>
+            <View style={styles.titleUnderline} />
+          </View>
+          <PriceBadge price={item.price} />
+        </View>
         <Text style={styles.description} numberOfLines={2}>
           {item.shortDescription}
         </Text>
 
         <View style={styles.bottomRow}>
           <FoodTags meal={item} small />
-          <PriceBadge price={item.price} />
+          <Pressable
+            onPress={onAdd}
+            style={styles.addButton}
+            hitSlop={8}
+            accessibilityRole="button"
+            accessibilityLabel={`Lägg till ${item.name} i måltid`}>
+            <Text style={styles.addButtonText}>Lägg till</Text>
+          </Pressable>
         </View>
-        <Pressable onPress={onAdd}>
-          <Text>Lägg till</Text>
-        </Pressable>
       </View>
     </Pressable>
   );
@@ -63,18 +77,26 @@ const styles = StyleSheet.create({
   info: {
     padding: 14,
   },
+  topRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  titleWrapper: {
+    flexShrink: 1,
+    marginRight: 8,
+  },
   title: {
     fontSize: 20,
     fontWeight: "800",
     color: colors.darkGreen,
   },
   titleUnderline: {
-    width: 40,
-    height: 3,
+    height: 4,
     borderRadius: 2,
-    marginTop: 6,
+    marginTop: 8,
     backgroundColor: colors.pink,
   },
+
   description: {
     fontSize: 14,
     lineHeight: 20,
@@ -87,5 +109,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
     marginTop: 12,
+  },
+  addButton: {
+    backgroundColor: colors.turquoise,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+
+  addButtonText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

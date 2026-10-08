@@ -3,7 +3,10 @@ import { colors } from "../../constants/Color";
 
 export default function PriceBadge({ price }) {
   return (
-    <View style={styles.priceBadge}>
+    <View
+      style={styles.priceBadge}
+      accessible
+      accessibilityLabel={`${price} kronor`}>
       <Text style={styles.priceText}>{price} kr</Text>
     </View>
   );
