@@ -40,25 +40,18 @@ export default function MenuCards({ item, onPress, onAdd }) {
           <FoodTags meal={item} small />
           <Pressable
             onPress={onAdd}
-            style={styles.addButton}
+            style={({ pressed }) => [
+              styles.addButton,
+              pressed && styles.addButtonPressed,
+            ]}
             hitSlop={8}
             accessibilityRole="button"
             accessibilityLabel={`Lägg till ${item.name} i måltid`}>
             <Text style={styles.addButtonText}>Lägg till</Text>
           </Pressable>
         </View>
-      </Pressable>
-
-      <Pressable
-        style={({ pressed }) => [
-          styles.addButton,
-          pressed && styles.addButtonPressed,
-        ]}
-        onPress={onAdd}
-      >
-        <Text style={styles.addButtonText}>Lägg till</Text>
-      </Pressable>
-    </View>
+      </View>
+    </Pressable>
   );
 }
 
@@ -74,10 +67,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.12,
     shadowRadius: 8,
-  },
-
-  cardContent: {
-    backgroundColor: colors.white,
+    marginTop: 10,
   },
 
   pressed: {
@@ -130,9 +120,12 @@ const styles = StyleSheet.create({
   addButton: {
     backgroundColor: colors.turquoise,
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 14,
     borderRadius: 12,
     alignItems: "center",
+  },
+  addButtonPressed: {
+    opacity: 0.8,
   },
 
   addButtonText: {
