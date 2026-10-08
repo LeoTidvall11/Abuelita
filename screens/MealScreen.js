@@ -1,11 +1,19 @@
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable, Image } from "react-native";
 import { useContext } from "react";
 import { MealCalculatorContext } from "../context/MealCalculatorContext";
 import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
+import { getMealImage } from "../data/MealImages";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import BackButton from "../components/buttons/BackButton";
+import { fonts } from "../constants/Fonts";
 
 export default function MealScreen() {
-  const { selectedDishes, increaseQuantity, decreaseQuantity } = useContext(MealCalculatorContext);
+
+  const insets = useSafeAreaInsets();
+  const { selectedDishes, increaseQuantity, decreaseQuantity, clearMeal } = useContext(MealCalculatorContext);
+
+
 
   const total = selectedDishes.reduce(
     (sum, dish) => sum + dish.price * dish.quantity,
@@ -13,14 +21,29 @@ export default function MealScreen() {
   );
 
   return (
-    <View style={styles.container}>
+
+    <SafeAreaView style={styles.container}>
+
+
+
+      <BackButton
+        style={[styles.backButton, { top: insets.top + spacing.screenTop }]}
+      />
+
       <Text style={styles.title} accessibilityRole="header">
         Min måltid
       </Text>
 
       <ScrollView contentContainerStyle={styles.list}>
+
+
         {selectedDishes.map((dish) => (
           <View key={dish.id} style={styles.dish}>
+
+            <Image
+              source={getMealImage(dish.id, "thumb")}
+              style={styles.image}
+            />
 
             <View
               style={styles.dishInfo}
@@ -63,7 +86,17 @@ export default function MealScreen() {
             </View>
 
           </View>
+
         ))}
+
+        <Pressable
+          style={styles.clearButton}
+          onPress={clearMeal}
+        >
+          <Text style={styles.clearButtonText}>
+            Töm måltid
+          </Text>
+        </Pressable>
       </ScrollView>
 
       <View
@@ -74,7 +107,8 @@ export default function MealScreen() {
         <Text style={styles.totalLabel}>Totalt</Text>
         <Text style={styles.total}>{total} kr</Text>
       </View>
-    </View>
+    </SafeAreaView>
+
   );
 }
 
@@ -91,6 +125,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: spacing.screenTop,
     marginBottom: spacing.titleBottom,
+    fontFamily: fonts.grenze,
   },
 
   list: {
@@ -174,5 +209,31 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 20,
     fontWeight: "bold",
+  },
+  image: {
+    width: 70,
+    height: 70,
+    borderRadius: 10,
+    marginRight: 12,
+  },
+  clearButton: {
+    marginHorizontal: spacing.screenHorizontal,
+    marginBottom: 12,
+    paddingVertical: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.pink,
+    alignItems: "center",
+  },
+
+  clearButtonText: {
+    color: colors.pink,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  backButton: {
+    position: "absolute",
+    left: spacing.screenHorizontal,
+    zIndex: 10,
   },
 });

@@ -4,9 +4,10 @@ import { colors } from "../constants/Color";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { spacing } from "../constants/Spacing";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { fonts } from "../constants/Fonts";
 
 export default function CategoryScreen({ navigation }) {
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text} accessibilityRole="header">
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: spacing.screenTop,
     marginBottom: spacing.titleBottom,
+    fontFamily: fonts.grenze,
   },
   categoryButton: {
     backgroundColor: colors.cream,

@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { MealCalculatorContext } from "../context/MealCalculatorContext";
 import { Ionicons } from "@expo/vector-icons";
 import BackButton, { BACK_BUTTON_SIZE } from "../components/buttons/BackButton";
+import { fonts } from "../constants/Fonts";
 
 export default function MenuScreen({ navigation, route }) {
   const context = useContext(MealCalculatorContext);
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.screenHorizontal,
     marginTop: spacing.screenTop,
     marginBottom: spacing.titleBottom,
+
   },
   headerSpacer: {
     width: BACK_BUTTON_SIZE,
@@ -97,6 +99,8 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: colors.turquoise,
     textAlign: "center",
+    fontFamily: fonts.grenze,
+
   },
   mealBar: {
     backgroundColor: colors.turquoise,

@@ -13,6 +13,7 @@ import { colors } from "../constants/Color";
 import { openingHours, contactInfo } from "../data/Data";
 import { spacing } from "../constants/Spacing";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { fonts } from "../constants/Fonts";
 
 const contactRows = [
   {
@@ -114,6 +115,7 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     textAlign: "center",
     marginBottom: spacing.titleBottom,
+    fontFamily: fonts.grenze,
   },
 
   sectionTitle: {
