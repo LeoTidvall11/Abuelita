@@ -11,6 +11,7 @@ import { colors } from "./constants/Color";
 import { FavoritesProvider } from "./context/FavoritesContext";
 import { MealCalculatorProvider } from "./context/MealCalculatorContext";
 import MealScreen from "./screens/MealScreen";
+import FavoritesScreen from "./screens/FavoritesScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -19,6 +20,7 @@ function MenuStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Categories" component={CategoryScreen} />
+      <Stack.Screen name="Favorites" component={FavoritesScreen} />
       <Stack.Screen name="MenuList" component={MenuScreen} />
       <Stack.Screen name="Dish" component={DishDescription} />
       <Stack.Screen name="Meal" component={MealScreen} />
