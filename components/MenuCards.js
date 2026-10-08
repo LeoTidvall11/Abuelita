@@ -6,6 +6,8 @@ import FoodTags from "./labels/FoodTags";
 import PriceBadge from "./labels/PriceBadge";
 import { useFavorites } from "../context/FavoritesContext";
 import { Ionicons } from "@expo/vector-icons";
+import { useContext } from "react";
+import { MealCalculatorContext } from "../context/MealCalculatorContext";
 
 
 export default function MenuCards({ item, onPress, onAdd }) {
