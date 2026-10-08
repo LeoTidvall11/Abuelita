@@ -7,7 +7,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { fonts } from "../constants/Fonts";
 
 export default function CategoryScreen({ navigation }) {
-
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text} accessibilityRole="header">
@@ -26,8 +25,7 @@ export default function CategoryScreen({ navigation }) {
               navigation.navigate("MenuList", {
                 categoryId: item.id,
               })
-            }
-          >
+            }>
             <MaterialCommunityIcons
               name={item.icon}
               size={24}
@@ -48,8 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cream,
   },
   text: {
-    fontSize: 36,
-    fontWeight: "800",
+    fontSize: 42,
     color: colors.turquoise,
     textAlign: "center",
     marginTop: spacing.screenTop,
@@ -64,8 +61,8 @@ const styles = StyleSheet.create({
     marginHorizontal: spacing.screenHorizontal,
     marginBottom: spacing.cardGap,
     borderWidth: 1,
-    borderColor: colors.yellow,
-    elevation: 2,
+    borderColor: colors.turquoise,
+    elevation: 5,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

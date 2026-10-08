@@ -6,12 +6,8 @@ import FoodTags from "./labels/FoodTags";
 import PriceBadge from "./labels/PriceBadge";
 import { useFavorites } from "../context/FavoritesContext";
 import { Ionicons } from "@expo/vector-icons";
-import { useContext } from "react";
-import { MealCalculatorContext } from "../context/MealCalculatorContext";
-
 
 export default function MenuCards({ item, onPress, onAdd }) {
-
   const { favorites, toggleFavorite } = useFavorites();
 
   const isFavorite = favorites.some((favorite) => favorite.id === item.id);
@@ -26,8 +22,7 @@ export default function MenuCards({ item, onPress, onAdd }) {
       onAccessibilityAction={(event) => {
         if (event.nativeEvent.actionName === "add") onAdd();
       }}
-      android_ripple={{ color: colors.yellow }}
-    >
+      android_ripple={{ color: colors.yellow }}>
       <Image
         source={getMealImage(item.id, "detail")}
         style={styles.image}
@@ -44,8 +39,7 @@ export default function MenuCards({ item, onPress, onAdd }) {
                 onPress={(event) => {
                   event.stopPropagation();
                   toggleFavorite(item);
-                }}
-              >
+                }}>
                 <Ionicons
                   name={isFavorite ? "heart" : "heart-outline"}
                   size={24}
@@ -73,8 +67,7 @@ export default function MenuCards({ item, onPress, onAdd }) {
             ]}
             hitSlop={8}
             accessibilityRole="button"
-            accessibilityLabel={`Lägg till ${item.name} i måltid`}
-          >
+            accessibilityLabel={`Lägg till ${item.name} i måltid`}>
             <Text style={styles.addButtonText}>Lägg till</Text>
           </Pressable>
         </View>
@@ -90,8 +83,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 20,
     overflow: "hidden",
-    elevation: 3,
-    shadowColor: colors.darkGreen,
+    elevation: 8,
+    shadowColor: colors.terracotta,
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.12,
     shadowRadius: 8,

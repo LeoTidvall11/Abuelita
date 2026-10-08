@@ -8,6 +8,7 @@ import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
 import BackButton, { BACK_BUTTON_SIZE } from "../components/buttons/BackButton";
 import { Ionicons } from "@expo/vector-icons";
+import { fonts } from "../constants/Fonts";
 
 export default function FavoritesScreen({ navigation }) {
   const { favorites } = useFavorites();
@@ -58,8 +59,7 @@ export default function FavoritesScreen({ navigation }) {
           onPress={() => navigation.navigate("Meal")}
           accessibilityRole="button"
           accessibilityLabel={`Min måltid, ${selectedDishes.length} rätter, totalt ${total} kronor`}
-          accessibilityHint="Visar din måltid"
-        >
+          accessibilityHint="Visar din måltid">
           <Ionicons name="restaurant-outline" size={24} color={colors.white} />
 
           <Text style={styles.mealBarText}>
@@ -88,9 +88,9 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     textAlign: "center",
-    fontSize: 32,
-    fontWeight: "800",
+    fontSize: 42,
     color: colors.turquoise,
+    fontFamily: fonts.grenze,
   },
   headerSpacer: {
     width: 40,

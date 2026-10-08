@@ -25,11 +25,11 @@ export default function MenuScreen({ navigation, route }) {
   );
   const totalQuantity = selectedDishes.reduce(
     (sum, dish) => sum + dish.quantity,
-    0
+    0,
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View style={styles.header}>
         <BackButton />
         <Text style={styles.text} accessibilityRole="header">
@@ -38,8 +38,7 @@ export default function MenuScreen({ navigation, route }) {
         <Pressable
           onPress={() => navigation.navigate("Favorites")}
           accessibilityRole="button"
-          accessibilityLabel="Öppna favoriter"
-        >
+          accessibilityLabel="Öppna favoriter">
           <Ionicons name="heart" size={28} color={colors.pink} />
         </Pressable>
       </View>
@@ -65,8 +64,7 @@ export default function MenuScreen({ navigation, route }) {
           onPress={() => navigation.navigate("Meal")}
           accessibilityRole="button"
           accessibilityLabel={`Min måltid, ${selectedDishes.length} rätter, totalt ${total} kronor`}
-          accessibilityHint="Visar din måltid"
-        >
+          accessibilityHint="Visar din måltid">
           <Ionicons name="restaurant-outline" size={24} color={colors.white} />
 
           <Text style={styles.mealBarText}>
@@ -92,19 +90,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.screenHorizontal,
     marginTop: spacing.screenTop,
     marginBottom: spacing.titleBottom,
-
   },
   headerSpacer: {
     width: BACK_BUTTON_SIZE,
   },
   text: {
     flex: 1,
-    fontSize: 36,
-    fontWeight: "800",
+    fontSize: 42,
     color: colors.turquoise,
     textAlign: "center",
     fontFamily: fonts.grenze,
-
   },
   mealBar: {
     backgroundColor: colors.turquoise,
