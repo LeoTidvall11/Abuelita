@@ -4,8 +4,15 @@ import { getMealImage } from "../data/MealImages";
 import { spacing } from "../constants/Spacing";
 import FoodTags from "./labels/FoodTags";
 import PriceBadge from "./labels/PriceBadge";
+import { useFavorites } from "../context/FavoritesContext";
+import { Ionicons } from "@expo/vector-icons";
+
 
 export default function MenuCards({ item, onPress, onAdd }) {
+
+  const { favorites, toggleFavorite } = useFavorites();
+
+  const isFavorite = favorites.some((favorite) => favorite.id === item.id);
   return (
     <Pressable
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}
@@ -17,7 +24,8 @@ export default function MenuCards({ item, onPress, onAdd }) {
       onAccessibilityAction={(event) => {
         if (event.nativeEvent.actionName === "add") onAdd();
       }}
-      android_ripple={{ color: colors.yellow }}>
+      android_ripple={{ color: colors.yellow }}
+    >
       <Image
         source={getMealImage(item.id, "detail")}
         style={styles.image}
@@ -27,9 +35,26 @@ export default function MenuCards({ item, onPress, onAdd }) {
       <View style={styles.info}>
         <View style={styles.topRow}>
           <View style={styles.titleWrapper}>
-            <Text style={styles.title}>{item.name}</Text>
+            <View style={styles.titleAndFavorite}>
+              <Text style={styles.title}>{item.name}</Text>
+
+              <Pressable
+                onPress={(event) => {
+                  event.stopPropagation();
+                  toggleFavorite(item);
+                }}
+              >
+                <Ionicons
+                  name={isFavorite ? "heart" : "heart-outline"}
+                  size={24}
+                  color={colors.pink}
+                />
+              </Pressable>
+            </View>
+
             <View style={styles.titleUnderline} />
           </View>
+
           <PriceBadge price={item.price} />
         </View>
         <Text style={styles.description} numberOfLines={2}>
@@ -46,7 +71,8 @@ export default function MenuCards({ item, onPress, onAdd }) {
             ]}
             hitSlop={8}
             accessibilityRole="button"
-            accessibilityLabel={`Lägg till ${item.name} i måltid`}>
+            accessibilityLabel={`Lägg till ${item.name} i måltid`}
+          >
             <Text style={styles.addButtonText}>Lägg till</Text>
           </Pressable>
         </View>
@@ -132,5 +158,14 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 16,
     fontWeight: "bold",
+  },
+  favoriteButton: {
+    marginLeft: 6,
+    marginRight: 16,
+  },
+  titleAndFavorite: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
   },
 });
