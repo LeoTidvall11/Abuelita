@@ -10,10 +10,13 @@ import AboutUs from "./screens/AboutUs";
 import { colors } from "./constants/Color";
 import { MealCalculatorProvider } from "./context/MealCalculatorContext";
 import MealScreen from "./screens/MealScreen";
+import { useFonts } from "expo-font";
+
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
 
 function MenuStack() {
   return (
@@ -27,6 +30,10 @@ function MenuStack() {
 }
 
 export default function App() {
+
+  const [fontsLoaded] = useFonts({
+    Grenze: require("./assets/fonts/Grenze-VariableFont_wght.ttf"),
+  });
 
   return (
     <MealCalculatorProvider>

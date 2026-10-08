@@ -6,6 +6,7 @@ import { spacing } from "../constants/Spacing";
 import { getMealImage } from "../data/MealImages";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import BackButton from "../components/buttons/BackButton";
+import { fonts } from "../constants/Fonts";
 
 export default function MealScreen() {
 
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: spacing.screenTop,
     marginBottom: spacing.titleBottom,
+    fontFamily: fonts.grenze,
   },
 
   list: {
