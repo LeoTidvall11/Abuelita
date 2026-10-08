@@ -4,9 +4,15 @@ import { MealCalculatorContext } from "../context/MealCalculatorContext";
 import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
 import { getMealImage } from "../data/MealImages";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import BackButton from "../components/buttons/BackButton";
 
 export default function MealScreen() {
+
+  const insets = useSafeAreaInsets();
   const { selectedDishes, increaseQuantity, decreaseQuantity, clearMeal } = useContext(MealCalculatorContext);
+
+
 
   const total = selectedDishes.reduce(
     (sum, dish) => sum + dish.price * dish.quantity,
@@ -14,7 +20,15 @@ export default function MealScreen() {
   );
 
   return (
-    <View style={styles.container}>
+
+    <SafeAreaView style={styles.container}>
+
+
+
+      <BackButton
+        style={[styles.backButton, { top: insets.top + spacing.screenTop }]}
+      />
+
       <Text style={styles.title} accessibilityRole="header">
         Min måltid
       </Text>
@@ -71,6 +85,7 @@ export default function MealScreen() {
             </View>
 
           </View>
+
         ))}
 
         <Pressable
@@ -91,7 +106,8 @@ export default function MealScreen() {
         <Text style={styles.totalLabel}>Totalt</Text>
         <Text style={styles.total}>{total} kr</Text>
       </View>
-    </View>
+    </SafeAreaView>
+
   );
 }
 
@@ -212,5 +228,10 @@ const styles = StyleSheet.create({
     color: colors.pink,
     fontSize: 16,
     fontWeight: "bold",
+  },
+  backButton: {
+    position: "absolute",
+    left: spacing.screenHorizontal,
+    zIndex: 10,
   },
 });
