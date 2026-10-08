@@ -17,6 +17,7 @@ import { MealCalculatorContext } from "../context/MealCalculatorContext";
 import FoodTags from "../components/labels/FoodTags.js";
 import PriceBadge from "../components/labels/PriceBadge.js";
 import BackButton from "../components/buttons/BackButton";
+import { useFavorites } from "../context/FavoritesContext";
 import { Ionicons } from "@expo/vector-icons";
 
 const CARD_OVERLAP = 30;
@@ -31,6 +32,9 @@ export default function DishDescription({ route, navigation }) {
   );
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
+  const { favorites, toggleFavorite } = useFavorites();
+
+  const isFavorite = favorites.some((favorite) => favorite.id === meal.id);
 
   return (
     <View style={styles.container}>
@@ -44,10 +48,22 @@ export default function DishDescription({ route, navigation }) {
         />
 
         <View style={styles.card}>
+          <Pressable
+            style={styles.favoriteButton}
+            onPress={() => toggleFavorite(meal)}
+          >
+            <Ionicons
+              name={isFavorite ? "heart" : "heart-outline"}
+              size={28}
+              color={colors.pink}
+            />
+          </Pressable>
+
           <View style={styles.titleWrapper}>
             <Text style={styles.title} accessibilityRole="header">
               {meal.name}
             </Text>
+
             <View style={styles.titleUnderline} />
           </View>
 
@@ -64,7 +80,8 @@ export default function DishDescription({ route, navigation }) {
               pressed && styles.addButtonPressed,
             ]}
             onPress={() => addDish(meal)}
-            accessibilityRole="button">
+            accessibilityRole="button"
+          >
             <Text style={styles.addButtonText}>Lägg till i måltid</Text>
           </Pressable>
 
@@ -79,7 +96,8 @@ export default function DishDescription({ route, navigation }) {
       {selectedDishes.length > 0 && (
         <Pressable
           style={styles.mealBar}
-          onPress={() => navigation.navigate("Meal")}>
+          onPress={() => navigation.navigate("Meal")}
+        >
           <Ionicons name="restaurant-outline" size={24} color={colors.white} />
 
           <Text style={styles.mealBarText}>
@@ -119,6 +137,7 @@ const styles = StyleSheet.create({
   },
   titleWrapper: {
     alignSelf: "flex-start",
+    position: "relative",
   },
   title: {
     fontSize: 26,
@@ -191,5 +210,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginHorizontal: 8,
+  },
+  favoriteButton: {
+    position: "absolute",
+    right: 16,
+    top: 16,
+    zIndex: 1,
   },
 });

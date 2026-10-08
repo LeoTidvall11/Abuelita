@@ -8,9 +8,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import AboutUs from "./screens/AboutUs";
 import { colors } from "./constants/Color";
+import { FavoritesProvider } from "./context/FavoritesContext";
 import { MealCalculatorProvider } from "./context/MealCalculatorContext";
 import MealScreen from "./screens/MealScreen";
-
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -29,6 +29,7 @@ function MenuStack() {
 export default function App() {
 
   return (
+    <FavoritesProvider>
     <MealCalculatorProvider>
       <NavigationContainer>
         <Tab.Navigator
@@ -86,7 +87,8 @@ export default function App() {
             }}
           />
         </Tab.Navigator>
-      </NavigationContainer>
-    </MealCalculatorProvider>
+        </NavigationContainer>
+        </MealCalculatorProvider >
+    </FavoritesProvider>
   );
 }
