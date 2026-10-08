@@ -6,7 +6,7 @@ import { spacing } from "../constants/Spacing";
 import { getMealImage } from "../data/MealImages";
 
 export default function MealScreen() {
-  const { selectedDishes, increaseQuantity, decreaseQuantity } = useContext(MealCalculatorContext);
+  const { selectedDishes, increaseQuantity, decreaseQuantity, clearMeal } = useContext(MealCalculatorContext);
 
   const total = selectedDishes.reduce(
     (sum, dish) => sum + dish.price * dish.quantity,
@@ -20,6 +20,8 @@ export default function MealScreen() {
       </Text>
 
       <ScrollView contentContainerStyle={styles.list}>
+
+
         {selectedDishes.map((dish) => (
           <View key={dish.id} style={styles.dish}>
 
@@ -70,6 +72,15 @@ export default function MealScreen() {
 
           </View>
         ))}
+
+        <Pressable
+          style={styles.clearButton}
+          onPress={clearMeal}
+        >
+          <Text style={styles.clearButtonText}>
+            Töm måltid
+          </Text>
+        </Pressable>
       </ScrollView>
 
       <View
@@ -186,5 +197,20 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 10,
     marginRight: 12,
+  },
+  clearButton: {
+    marginHorizontal: spacing.screenHorizontal,
+    marginBottom: 12,
+    paddingVertical: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.pink,
+    alignItems: "center",
+  },
+
+  clearButtonText: {
+    color: colors.pink,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

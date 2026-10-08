@@ -55,7 +55,9 @@ export function MealCalculatorProvider({ children }) {
         .filter((dish) => dish.quantity > 0)
     );
   };
-
+  const clearMeal = () => {
+    setSelectedDishes([]);
+  };
 
 
   return (
@@ -65,6 +67,7 @@ export function MealCalculatorProvider({ children }) {
         addDish,
         increaseQuantity,
         decreaseQuantity,
+        clearMeal,
       }}
     >
       {children}
