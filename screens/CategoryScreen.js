@@ -9,7 +9,9 @@ export default function CategoryScreen({ navigation }) {
   
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Meny</Text>
+      <Text style={styles.text} accessibilityRole="header">
+        Meny
+      </Text>
 
       <FlatList
         data={categories}
@@ -17,6 +19,8 @@ export default function CategoryScreen({ navigation }) {
           <Pressable
             style={styles.categoryButton}
             android_ripple={{ color: colors.yellow }}
+            accessibilityRole="button"
+            accessibilityLabel={item.title}
             onPress={() =>
               navigation.navigate("MenuList", {
                 categoryId: item.id,

@@ -9,6 +9,8 @@ import { Ionicons } from "@expo/vector-icons";
 import AboutUs from "./screens/AboutUs";
 import { colors } from "./constants/Color";
 import { FavoritesProvider } from "./context/FavoritesContext";
+import { MealCalculatorProvider } from "./context/MealCalculatorContext";
+import MealScreen from "./screens/MealScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -19,13 +21,16 @@ function MenuStack() {
       <Stack.Screen name="Categories" component={CategoryScreen} />
       <Stack.Screen name="MenuList" component={MenuScreen} />
       <Stack.Screen name="Dish" component={DishDescription} />
+      <Stack.Screen name="Meal" component={MealScreen} />
     </Stack.Navigator>
   );
 }
 
 export default function App() {
+
   return (
     <FavoritesProvider>
+    <MealCalculatorProvider>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
@@ -82,7 +87,8 @@ export default function App() {
             }}
           />
         </Tab.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
+        </MealCalculatorProvider >
     </FavoritesProvider>
   );
 }

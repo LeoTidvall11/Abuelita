@@ -13,15 +13,19 @@ export default function Logo() {
   }
 
   return (
-    <View style={styles.logo}>
-      <Text style={[styles.letter, styles.a]}>A</Text>
-      <Text style={[styles.letter, styles.b]}>B</Text>
-      <Text style={[styles.letter, styles.u]}>U</Text>
-      <Text style={[styles.letter, styles.e]}>E</Text>
-      <Text style={[styles.letter, styles.l]}>L</Text>
-      <Text style={[styles.letter, styles.i]}>I</Text>
-      <Text style={[styles.letter, styles.t]}>T</Text>
-      <Text style={[styles.letter, styles.lastA]}>A</Text>
+    <View
+      style={styles.logo}
+      accessible
+      accessibilityRole="header"
+      accessibilityLabel="Abuelita">
+      <Text style={[styles.letter, styles.a]} maxFontSizeMultiplier={1.2}>A</Text>
+      <Text style={[styles.letter, styles.b]} maxFontSizeMultiplier={1.2}>B</Text>
+      <Text style={[styles.letter, styles.u]} maxFontSizeMultiplier={1.2}>U</Text>
+      <Text style={[styles.letter, styles.e]} maxFontSizeMultiplier={1.2}>E</Text>
+      <Text style={[styles.letter, styles.l]} maxFontSizeMultiplier={1.2}>L</Text>
+      <Text style={[styles.letter, styles.i]} maxFontSizeMultiplier={1.2}>I</Text>
+      <Text style={[styles.letter, styles.t]} maxFontSizeMultiplier={1.2}>T</Text>
+      <Text style={[styles.letter, styles.lastA]} maxFontSizeMultiplier={1.2}>A</Text>
     </View>
   );
 }
