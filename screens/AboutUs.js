@@ -1,4 +1,13 @@
-import { View, Text, Pressable, StyleSheet, ScrollView, Linking, Platform, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  ScrollView,
+  Linking,
+  Platform,
+  Alert,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../constants/Color";
 import { openingHours, contactInfo } from "../data/Data";
@@ -15,35 +24,26 @@ const contactRows = [
   { icon: "call", text: contactInfo.phone },
   { icon: "mail", text: contactInfo.email },
 ];
-  function openMap() {
-   const latitude = contactInfo.latitude;
-   const longitude= contactInfo.longitude;
+function openMap() {
+  const latitude = contactInfo.latitude;
+  const longitude = contactInfo.longitude;
 
-   const url = Platform.select({
-    ios:
-        `maps:0,0?q=${latitude},${longitude}`,
+  const url = Platform.select({
+    ios: `maps:0,0?q=${latitude},${longitude}`,
 
-    android:
-        `geo:${latitude},${longitude}`
-
-   });
-   Alert.alert(
-    "Hitta till Abuelita",
-    "Vill du öppna adressen i kartappen?",
-    [
-      { text: "Avbryt", style: "cancel"},
-      { text: "Öppna karta", onPress: () => Linking.openURL(url) },
-    ]
-   );
-  }
+    android: `geo:${latitude},${longitude}`,
+  });
+  Alert.alert("Hitta till Abuelita", "Vill du öppna adressen i kartappen?", [
+    { text: "Avbryt", style: "cancel" },
+    { text: "Öppna karta", onPress: () => Linking.openURL(url) },
+  ]);
+}
 
 export default function AboutUs() {
   return (
-
     <SafeAreaView
       style={styles.screen}
-      contentContainerStyle={styles.container}
-    >
+      contentContainerStyle={styles.container}>
       <ScrollView>
         <Text style={styles.title} accessibilityRole="header">
           Öppettider
@@ -57,8 +57,7 @@ export default function AboutUs() {
               <View
                 key={item.day}
                 style={[styles.row, !isLast && styles.divider]}
-                accessible
-              >
+                accessible>
                 <Text style={styles.day}>{item.day}</Text>
                 <Text style={[styles.hours, !item.hours && styles.closed]}>
                   {item.hours ?? "Stängt"}
@@ -80,15 +79,15 @@ export default function AboutUs() {
 
             return (
               <Pressable
-              key={item.icon}
-              onPress={item.onPress}
-              accessibilityRole={item.onPress ? "button" : "text"}
-              accessibilityLabel={item.text}
-              accessibilityHint={item.hint}
-              style={[styles.contactRow, !isLast && styles.divider]}>
-              <Ionicons name={item.icon} size={22} color={colors.pink} />
-              <Text style={styles.contactText}>{item.text}</Text>
-            </Pressable>
+                key={item.icon}
+                onPress={item.onPress}
+                accessibilityRole={item.onPress ? "button" : "text"}
+                accessibilityLabel={item.text}
+                accessibilityHint={item.hint}
+                style={[styles.contactRow, !isLast && styles.divider]}>
+                <Ionicons name={item.icon} size={22} color={colors.pink} />
+                <Text style={styles.contactText}>{item.text}</Text>
+              </Pressable>
             );
           })}
         </View>
