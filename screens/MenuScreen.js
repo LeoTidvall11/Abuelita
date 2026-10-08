@@ -23,6 +23,10 @@ export default function MenuScreen({ navigation, route }) {
     (sum, dish) => sum + dish.price * dish.quantity,
     0,
   );
+  const totalQuantity = selectedDishes.reduce(
+    (sum, dish) => sum + dish.quantity,
+    0
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -59,7 +63,7 @@ export default function MenuScreen({ navigation, route }) {
           <Ionicons name="restaurant-outline" size={24} color={colors.white} />
 
           <Text style={styles.mealBarText}>
-            Min måltid · {selectedDishes.length} rätter · {total} kr
+            Min måltid · {totalQuantity} rätter · {total} kr
           </Text>
 
           <Ionicons name="chevron-forward" size={22} color={colors.white} />

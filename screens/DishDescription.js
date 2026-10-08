@@ -30,6 +30,10 @@ export default function DishDescription({ route, navigation }) {
     (sum, dish) => sum + dish.price * dish.quantity,
     0,
   );
+  const totalQuantity = selectedDishes.reduce(
+    (sum, dish) => sum + dish.quantity,
+    0
+  );
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const { favorites, toggleFavorite } = useFavorites();
@@ -101,7 +105,7 @@ export default function DishDescription({ route, navigation }) {
           <Ionicons name="restaurant-outline" size={24} color={colors.white} />
 
           <Text style={styles.mealBarText}>
-            Min måltid · {selectedDishes.length} rätter · {total} kr
+            Min måltid · {totalQuantity} rätter · {total} kr
           </Text>
 
           <Ionicons name="chevron-forward" size={22} color={colors.white} />
