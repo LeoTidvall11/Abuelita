@@ -1,5 +1,5 @@
 import { Text, StyleSheet, FlatList, Pressable, View } from "react-native";
-import { meals } from "../data/Data";
+import { categories, meals } from "../data/Data";
 import MenuCards from "../components/MenuCards";
 import { colors } from "../constants/Color";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,6 +15,7 @@ export default function MenuScreen({ navigation, route }) {
   const { selectedDishes, addDish } = context;
 
   const categoryId = route.params?.categoryId;
+  const category = categories.find((c) => c.id === categoryId);
   const filteredMeals = meals.filter((meal) => meal.category === categoryId);
 
   const total = selectedDishes.reduce(
@@ -27,7 +28,7 @@ export default function MenuScreen({ navigation, route }) {
       <View style={styles.header}>
         <BackButton />
         <Text style={styles.text} accessibilityRole="header">
-          Meny
+          {category?.title ?? "Meny"}
         </Text>
         <View style={styles.headerSpacer} />
       </View>
