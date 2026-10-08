@@ -1,29 +1,38 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+  Alert,
+  Linking,
+} from "react-native";
 import { colors } from "../constants/Color";
-import { useFonts } from "expo-font";
-import Logo from "../components/Logo";
 import ScreenBackground from "../components/ScreenBackground";
-
+import { contactInfo } from "../data/Data";
 
 export default function HomeScreen({ navigation }) {
-
-  const [fontsLoaded] = useFonts({
-    "Grenze": require("../assets/fonts/Grenze-VariableFont_wght.ttf"),
-  });
-
-  if (!fontsLoaded) {
-    return null;
+  function bookTable() {
+    const email = contactInfo.email;
+    const subject = encodeURIComponent("Bordsbokning");
+    const body = encodeURIComponent(
+      "Hej! Jag vill boka bord.\n\nDatum:\nTid:\nAntal personer:\nNamn:\nTelefon:",
+    );
+    const url = `mailto:${email}?subject=${subject}&body=${body}`;
+    Alert.alert("Boka ett bord", "Vill du öppna mejlappen för att boka bord?", [
+      { text: "Avbryt", style: "cancel" },
+      { text: "Öppna mejlappen", onPress: () => Linking.openURL(url) },
+    ]);
   }
-
 
   return (
     <ScreenBackground>
       <View style={styles.container}>
-        <Logo />
-
-        <View style={styles.titleGap} />
-
-        <Text style={styles.subtitle}>Comida Con Amor</Text>
+        <Image
+          source={require("../assets/images/abuelita_logo.png")}
+          style={styles.logo}
+          resizeMode="contain"
+        />
 
         <View style={styles.buttonGap} />
 
@@ -35,7 +44,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonText}>Meny</Text>
         </Pressable>
 
-        <Pressable style={styles.secondaryButton} accessibilityRole="button">
+        <Pressable onPress={bookTable} style={styles.secondaryButton}>
           <Text style={styles.buttonText}>Boka Bord</Text>
         </Pressable>
 
@@ -55,35 +64,17 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     padding: 24,
     justifyContent: "center",
   },
 
-  title: {
-    fontFamily: "Grenze",
-    color: colors.darkGreen,
-    fontSize: 48,
-    fontWeight: "800",
-    textAlign: "center",
-  },
-
-  subtitle: {
-    fontFamily: "Grenze",
-    color: colors.turquoise,
-    fontSize: 24,
-    fontWeight: "600",
-    textAlign: "center",
-    letterSpacing: 2,
-    marginTop: 8,
+  logo: {
+    width: "100%",
+    height: 300,
   },
 
   buttonGap: {
-    height: 80,
-  },
-
-  titleGap: {
-    height: 20,
+    height: 40,
   },
 
   primaryButton: {

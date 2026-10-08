@@ -47,8 +47,18 @@ export default function MenuCards({ item, onPress, onAdd }) {
             <Text style={styles.addButtonText}>Lägg till</Text>
           </Pressable>
         </View>
-      </View>
-    </Pressable>
+      </Pressable>
+
+      <Pressable
+        style={({ pressed }) => [
+          styles.addButton,
+          pressed && styles.addButtonPressed,
+        ]}
+        onPress={onAdd}
+      >
+        <Text style={styles.addButtonText}>Lägg till</Text>
+      </Pressable>
+    </View>
   );
 }
 
@@ -65,10 +75,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.12,
     shadowRadius: 8,
   },
+
+  cardContent: {
+    backgroundColor: colors.white,
+  },
+
   pressed: {
     opacity: 0.9,
     transform: [{ scale: 0.98 }],
   },
+
   image: {
     width: "100%",
     height: undefined,
@@ -103,6 +119,7 @@ const styles = StyleSheet.create({
     color: colors.darkGreen,
     marginTop: 8,
   },
+
   bottomRow: {
     flexDirection: "row",
     justifyContent: "space-between",

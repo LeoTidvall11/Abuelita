@@ -120,10 +120,10 @@ const styles = StyleSheet.create({
   },
 
   quantity: {
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: "bold",
     color: colors.darkGreen,
-    opacity: 0.7,
-    marginTop: 4,
+    marginHorizontal: 12,
   },
 
   price: {
