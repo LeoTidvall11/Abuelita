@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable, Image } from "react-native";
 import { useContext } from "react";
 import { MealCalculatorContext } from "../context/MealCalculatorContext";
 import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
+import { getMealImage } from "../data/MealImages";
 
 export default function MealScreen() {
   const { selectedDishes, increaseQuantity, decreaseQuantity } = useContext(MealCalculatorContext);
@@ -21,6 +22,11 @@ export default function MealScreen() {
       <ScrollView contentContainerStyle={styles.list}>
         {selectedDishes.map((dish) => (
           <View key={dish.id} style={styles.dish}>
+
+            <Image
+              source={getMealImage(dish.id, "thumb")}
+              style={styles.image}
+            />
 
             <View
               style={styles.dishInfo}
@@ -174,5 +180,11 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 20,
     fontWeight: "bold",
+  },
+  image: {
+    width: 70,
+    height: 70,
+    borderRadius: 10,
+    marginRight: 12,
   },
 });
