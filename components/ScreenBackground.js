@@ -7,6 +7,8 @@ export default function ScreenBackground({ children }) {
       <Image
         source={require("../assets/images/decoration-top.png")}
         style={styles.top}
+        accessible={false}
+        importantForAccessibility="no"
       />
 
       <View style={styles.content}>
@@ -16,6 +18,8 @@ export default function ScreenBackground({ children }) {
       <Image
         source={require("../assets/images/decoration-bottom.png")}
         style={styles.bottom}
+        accessible={false}
+        importantForAccessibility="no"
       />
 
     </View>

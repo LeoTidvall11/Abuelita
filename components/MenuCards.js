@@ -3,166 +3,134 @@ import { colors } from "../constants/Color";
 import { getMealImage } from "../data/MealImages";
 import { spacing } from "../constants/Spacing";
 import FoodTags from "./labels/FoodTags";
+import PriceBadge from "./labels/PriceBadge";
 
 export default function MenuCards({ item, onPress, onAdd }) {
   return (
-    <View style={styles.card}>
-      <Pressable
-        style={({ pressed }) => [
-          styles.cardContent,
-          pressed && styles.pressed,
-        ]}
-        onPress={onPress}
-        android_ripple={{ color: colors.yellow }}
-      >
-        <View style={styles.topBanner} />
+    <Pressable
+      style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`${item.name}, ${item.price} kronor. ${item.shortDescription}`}
+      accessibilityHint="Öppnar rättens beskrivning"
+      accessibilityActions={[{ name: "add", label: "Lägg till i måltid" }]}
+      onAccessibilityAction={(event) => {
+        if (event.nativeEvent.actionName === "add") onAdd();
+      }}
+      android_ripple={{ color: colors.yellow }}>
+      <Image
+        source={getMealImage(item.id, "detail")}
+        style={styles.image}
+        resizeMode="cover"
+      />
 
-        <View style={styles.contentRow}>
-          <Image
-            source={getMealImage(item.id, "thumb")}
-            style={styles.image}
-          />
-
-          <View style={styles.infoContainer}>
-            <View>
-              <Text style={styles.title} numberOfLines={1}>
-                {item.name}
-              </Text>
-
-              <Text style={styles.description} numberOfLines={2}>
-                {item.shortDescription}
-              </Text>
-            </View>
-
-            <View style={styles.bottomRow}>
-              <View style={styles.tagsWrapper}>
-                <FoodTags meal={item} small />
-              </View>
-
-              <View style={styles.priceBadge}>
-                <Text style={styles.priceText}>{item.price} kr</Text>
-              </View>
-            </View>
+      <View style={styles.info}>
+        <View style={styles.topRow}>
+          <View style={styles.titleWrapper}>
+            <Text style={styles.title}>{item.name}</Text>
+            <View style={styles.titleUnderline} />
           </View>
+          <PriceBadge price={item.price} />
         </View>
-      </Pressable>
+        <Text style={styles.description} numberOfLines={2}>
+          {item.shortDescription}
+        </Text>
 
-      <Pressable
-        style={({ pressed }) => [
-          styles.addButton,
-          pressed && styles.addButtonPressed,
-        ]}
-        onPress={onAdd}
-      >
-        <Text style={styles.addButtonText}>Lägg till</Text>
-      </Pressable>
-    </View>
+        <View style={styles.bottomRow}>
+          <FoodTags meal={item} small />
+          <Pressable
+            onPress={onAdd}
+            style={({ pressed }) => [
+              styles.addButton,
+              pressed && styles.addButtonPressed,
+            ]}
+            hitSlop={8}
+            accessibilityRole="button"
+            accessibilityLabel={`Lägg till ${item.name} i måltid`}>
+            <Text style={styles.addButtonText}>Lägg till</Text>
+          </Pressable>
+        </View>
+      </View>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
-    borderRadius: 16,
     marginHorizontal: spacing.screenHorizontal,
-    marginVertical: 10,
-    borderWidth: 1,
-    borderColor: colors.yellow,
+    marginBottom: spacing.cardGap,
+    backgroundColor: colors.white,
+    borderRadius: 20,
     overflow: "hidden",
-    elevation: 4,
+    elevation: 3,
     shadowColor: colors.darkGreen,
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0,
-    shadowRadius: 10,
-  },
-
-  cardContent: {
-    backgroundColor: colors.white,
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    marginTop: 10,
   },
 
   pressed: {
     opacity: 0.9,
-    transform: [{ scale: 0.95 }],
-  },
-
-  topBanner: {
-    height: 8,
-    backgroundColor: colors.pink,
-  },
-
-  contentRow: {
-    flexDirection: "row",
-    padding: 12,
+    transform: [{ scale: 0.98 }],
   },
 
   image: {
-    width: 110,
-    height: 110,
-    borderRadius: 12,
+    width: "100%",
+    height: undefined,
+    aspectRatio: 3 / 2,
   },
-
-  infoContainer: {
-    flex: 1,
-    marginLeft: 14,
+  info: {
+    padding: 14,
+  },
+  topRow: {
+    flexDirection: "row",
     justifyContent: "space-between",
   },
-
+  titleWrapper: {
+    flexShrink: 1,
+    marginRight: 8,
+  },
   title: {
-    fontSize: 19,
-    color: colors.darkGreen,
+    fontSize: 20,
     fontWeight: "800",
-    letterSpacing: 0.3,
+    color: colors.darkGreen,
+  },
+  titleUnderline: {
+    height: 4,
+    borderRadius: 2,
+    marginTop: 8,
+    backgroundColor: colors.pink,
   },
 
   description: {
-    fontSize: 13,
+    fontSize: 14,
+    lineHeight: 20,
     color: colors.darkGreen,
-    opacity: 0.7,
-    marginTop: 4,
-    lineHeight: 18,
+    marginTop: 8,
   },
 
   bottomRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 10,
+    gap: 8,
+    marginTop: 12,
   },
-
-  tagsWrapper: {
-    flex: 1,
-    marginRight: 8,
-  },
-
-  priceBadge: {
-    backgroundColor: colors.orange,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 12,
-  },
-
-  priceText: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: colors.white,
-  },
-
   addButton: {
     backgroundColor: colors.turquoise,
-    paddingVertical: 8,
+    paddingVertical: 10,
     paddingHorizontal: 14,
-    borderRadius: 8,
-    alignSelf: "flex-start",
-    marginTop: 8,
+    borderRadius: 12,
+    alignItems: "center",
   },
-
   addButtonPressed: {
-    opacity: 0.6,
+    opacity: 0.8,
   },
 
   addButtonText: {
     color: colors.white,
+    fontSize: 16,
     fontWeight: "bold",
-    fontSize: 14,
   },
 });

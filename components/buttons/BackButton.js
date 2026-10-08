@@ -12,9 +12,8 @@ export default function BackButton({ onPress, style }) {
       onPress={onPress ?? navigation.goBack}
       hitSlop={8}
       accessibilityRole="button"
-      accessibilityLabel="Tillbaka"
-    >
-      <Ionicons name="chevron-back" size={24} color={colors.darkGreen} />
+      accessibilityLabel="Tillbaka">
+      <Ionicons name="chevron-back" size={24} color={colors.white} />
     </Pressable>
   );
 }
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     height: BACK_BUTTON_SIZE,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.white,
+    backgroundColor: colors.pink,
     borderRadius: BACK_BUTTON_SIZE / 2,
   },
 });
