@@ -14,6 +14,17 @@ import MealScreen from "./screens/MealScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
 import { useFonts } from "expo-font";
 
+/*Tab
+├── Home
+├── Menu → MenuStack
+ │           ├── Categories
+ │           ├── MenuList
+ │           ├── Dish
+ │           ├── Favorites
+ │            └── Meal
+ └── AboutUs
+ */
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
