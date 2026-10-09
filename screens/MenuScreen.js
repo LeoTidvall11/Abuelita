@@ -45,6 +45,9 @@ export default function MenuScreen({ navigation, route }) {
       <FlatList
         data={filteredMeals}
         keyExtractor={(item) => String(item.id)}
+        contentContainerStyle={
+          selectedDishes.length > 0 ? styles.listContent : undefined
+        }
         renderItem={({ item }) => (
           <MenuCards
             item={item}
@@ -59,20 +62,26 @@ export default function MenuScreen({ navigation, route }) {
       />
 
       {selectedDishes.length > 0 && (
-        <Pressable
-          style={styles.mealBar}
-          onPress={() => navigation.navigate("Meal")}
-          accessibilityRole="button"
-          accessibilityLabel={`Min måltid, ${selectedDishes.length} rätter, totalt ${total} kronor`}
-          accessibilityHint="Visar din måltid">
-          <Ionicons name="restaurant-outline" size={24} color={colors.white} />
+        <View style={styles.mealContainer}>
+          <Pressable
+            style={styles.mealBar}
+            onPress={() => navigation.navigate("Meal")}
+            accessibilityRole="button"
+            accessibilityLabel={`Min måltid, ${selectedDishes.length} rätter, totalt ${total} kronor`}
+            accessibilityHint="Visar din måltid">
+            <Ionicons
+              name="restaurant-outline"
+              size={24}
+              color={colors.white}
+            />
 
-          <Text style={styles.mealBarText}>
-            Min måltid · {totalQuantity} rätter · {total} kr
-          </Text>
+            <Text style={styles.mealBarText}>
+              Min måltid · {totalQuantity} rätter · {total} kr
+            </Text>
 
-          <Ionicons name="chevron-forward" size={22} color={colors.white} />
-        </Pressable>
+            <Ionicons name="chevron-forward" size={22} color={colors.white} />
+          </Pressable>
+        </View>
       )}
     </SafeAreaView>
   );
@@ -120,5 +129,14 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "center",
     marginHorizontal: 8,
+  },
+  mealContainer: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  listContent: {
+    paddingBottom: 90,
   },
 });
