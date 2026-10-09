@@ -40,7 +40,7 @@ export default function HomeScreen({ navigation }) {
           onPress={() => navigation.navigate("Menu")}
           style={styles.primaryButton}
           accessibilityRole="button">
-          <Text style={[styles.buttonText, styles.lightButtonText]}>Meny</Text>
+          <Text style={styles.lightButtonText}>Meny</Text>
         </Pressable>
 
         <Pressable
@@ -48,9 +48,7 @@ export default function HomeScreen({ navigation }) {
           style={styles.secondaryButton}
           accessibilityRole="button"
           accessibilityHint="Öppnar ett mejl för att boka bord">
-          <Text style={[styles.buttonText, styles.lightButtonText]}>
-            Boka Bord
-          </Text>
+          <Text style={styles.lightButtonText}>Boka Bord</Text>
         </Pressable>
 
         <Pressable
@@ -58,9 +56,7 @@ export default function HomeScreen({ navigation }) {
           style={styles.thirdButton}
           accessibilityRole="button"
           accessibilityHint="Visar adress och öppettider">
-          <Text style={[styles.buttonText, styles.lightButtonText]}>
-            Hitta Hit
-          </Text>
+          <Text style={styles.lightButtonText}>Hitta Hit</Text>
         </Pressable>
       </View>
     </ScreenBackground>
@@ -103,14 +99,10 @@ const styles = StyleSheet.create({
     borderRadius: 28,
   },
 
-  buttonText: {
-    color: colors.darkGreen,
-    fontSize: 17,
-    fontWeight: "700",
-    textAlign: "center",
-  },
-
   lightButtonText: {
     color: colors.white,
+    fontSize: 20,
+    fontWeight: "600",
+    textAlign: "center",
   },
 });
