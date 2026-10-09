@@ -1,9 +1,8 @@
 import { View, Image, StyleSheet } from "react-native";
-
+import { spacing } from "../constants/Spacing";
 export default function ScreenBackground({ children }) {
   return (
     <View style={styles.container}>
-
       <Image
         source={require("../assets/images/decoration-top.png")}
         style={styles.top}
@@ -11,9 +10,7 @@ export default function ScreenBackground({ children }) {
         importantForAccessibility="no"
       />
 
-      <View style={styles.content}>
-        {children}
-      </View>
+      <View style={styles.content}>{children}</View>
 
       <Image
         source={require("../assets/images/decoration-bottom.png")}
@@ -21,7 +18,6 @@ export default function ScreenBackground({ children }) {
         accessible={false}
         importantForAccessibility="no"
       />
-
     </View>
   );
 }
@@ -40,11 +36,13 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 75,
     resizeMode: "contain",
+    marginTop: 30,
   },
 
   bottom: {
     width: "100%",
     height: 75,
     resizeMode: "contain",
+    marginBottom: 30,
   },
 });
