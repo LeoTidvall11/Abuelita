@@ -42,10 +42,8 @@ function openMap() {
 
 export default function AboutUs() {
   return (
-    <SafeAreaView
-      style={styles.screen}
-      contentContainerStyle={styles.container}>
-      <ScrollView>
+    <SafeAreaView style={styles.screen} edges={["top", "left", "right"]}>
+      <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title} accessibilityRole="header">
           Öppettider
         </Text>
@@ -111,8 +109,7 @@ const styles = StyleSheet.create({
 
   title: {
     color: colors.turquoise,
-    fontSize: 36,
-    fontWeight: "800",
+    fontSize: 42,
     textAlign: "center",
     marginBottom: spacing.titleBottom,
     fontFamily: fonts.grenze,

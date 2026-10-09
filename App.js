@@ -17,7 +17,6 @@ import { useFonts } from "expo-font";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-
 function MenuStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -31,72 +30,70 @@ function MenuStack() {
 }
 
 export default function App() {
-
   const [fontsLoaded] = useFonts({
     Grenze: require("./assets/fonts/Grenze-VariableFont_wght.ttf"),
   });
 
   return (
     <FavoritesProvider>
-    <MealCalculatorProvider>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={{
-            tabBarActiveTintColor: colors.turquoise,
-            tabBarInactiveTintColor: colors.darkGreen,
-            headerShown: false,
-            tabBarStyle: {
-              backgroundColor: colors.cream,
-              borderTopColor: colors.darkGreen,
-              height: 80,
-              paddingTop: 10,
-            },
-          }}
-        >
-          <Tab.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              tabBarLabel: "Hem",
-              tabBarStyle: { display: "none" },
-              tabBarIcon: ({ color }) => (
-                <Ionicons name="home" size={24} color={color} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Menu"
-            component={MenuStack}
-            options={{
-              tabBarLabel: "Meny",
+      <MealCalculatorProvider>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={{
+              tabBarActiveTintColor: colors.turquoise,
+              tabBarInactiveTintColor: colors.darkGreen,
               headerShown: false,
-              popToTopOnBlur: true,
-              tabBarIcon: ({ color, focused }) => (
-                <Ionicons
-                  name={focused ? "restaurant" : "restaurant-outline"}
-                  size={24}
-                  color={color}
-                />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="AboutUs"
-            component={AboutUs}
-            options={{
-              tabBarLabel: "Om oss",
-              tabBarIcon: ({ color, focused }) => (
-                <Ionicons
-                  name={focused ? "people-circle" : "people-circle-outline"}
-                  size={24}
-                  color={color}
-                />
-              ),
-            }}
-          />
-        </Tab.Navigator>
+              tabBarStyle: {
+                backgroundColor: colors.cream,
+                borderTopColor: colors.terracotta,
+                height: 80,
+                paddingTop: 10,
+              },
+            }}>
+            <Tab.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                tabBarLabel: "Hem",
+                tabBarStyle: { display: "none" },
+                tabBarIcon: ({ color }) => (
+                  <Ionicons name="home" size={24} color={color} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Menu"
+              component={MenuStack}
+              options={{
+                tabBarLabel: "Meny",
+                headerShown: false,
+                popToTopOnBlur: true,
+                tabBarIcon: ({ color, focused }) => (
+                  <Ionicons
+                    name={focused ? "restaurant" : "restaurant-outline"}
+                    size={24}
+                    color={color}
+                  />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="AboutUs"
+              component={AboutUs}
+              options={{
+                tabBarLabel: "Om oss",
+                tabBarIcon: ({ color, focused }) => (
+                  <Ionicons
+                    name={focused ? "people-circle" : "people-circle-outline"}
+                    size={24}
+                    color={color}
+                  />
+                ),
+              }}
+            />
+          </Tab.Navigator>
         </NavigationContainer>
-        </MealCalculatorProvider >
+      </MealCalculatorProvider>
     </FavoritesProvider>
   );
 }

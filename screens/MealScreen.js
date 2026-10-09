@@ -1,31 +1,35 @@
-import { View, Text, StyleSheet, ScrollView, Pressable, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  Image,
+} from "react-native";
 import { useContext } from "react";
 import { MealCalculatorContext } from "../context/MealCalculatorContext";
 import { colors } from "../constants/Color";
 import { spacing } from "../constants/Spacing";
 import { getMealImage } from "../data/MealImages";
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import BackButton from "../components/buttons/BackButton";
 import { fonts } from "../constants/Fonts";
 
 export default function MealScreen() {
-
   const insets = useSafeAreaInsets();
-  const { selectedDishes, increaseQuantity, decreaseQuantity, clearMeal } = useContext(MealCalculatorContext);
-
-
+  const { selectedDishes, increaseQuantity, decreaseQuantity, clearMeal } =
+    useContext(MealCalculatorContext);
 
   const total = selectedDishes.reduce(
     (sum, dish) => sum + dish.price * dish.quantity,
-    0
+    0,
   );
 
   return (
-
-    <SafeAreaView style={styles.container}>
-
-
-
+    <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <BackButton
         style={[styles.backButton, { top: insets.top + spacing.screenTop }]}
       />
@@ -35,11 +39,8 @@ export default function MealScreen() {
       </Text>
 
       <ScrollView contentContainerStyle={styles.list}>
-
-
         {selectedDishes.map((dish) => (
           <View key={dish.id} style={styles.dish}>
-
             <Image
               source={getMealImage(dish.id, "thumb")}
               style={styles.image}
@@ -51,9 +52,7 @@ export default function MealScreen() {
               accessibilityLabel={`${dish.name}, ${dish.quantity} st, ${dish.price * dish.quantity} kronor`}>
               <Text style={styles.name}>{dish.name}</Text>
 
-              <Text style={styles.price}>
-                {dish.price * dish.quantity} kr
-              </Text>
+              <Text style={styles.price}>{dish.price * dish.quantity} kr</Text>
             </View>
 
             <View style={styles.quantityControls}>
@@ -62,8 +61,7 @@ export default function MealScreen() {
                 onPress={() => decreaseQuantity(dish.id)}
                 hitSlop={8}
                 accessibilityRole="button"
-                accessibilityLabel={`Minska antal ${dish.name}`}
-              >
+                accessibilityLabel={`Minska antal ${dish.name}`}>
                 <Text style={styles.quantityButtonText}>−</Text>
               </Pressable>
 
@@ -79,23 +77,15 @@ export default function MealScreen() {
                 onPress={() => increaseQuantity(dish.id)}
                 hitSlop={8}
                 accessibilityRole="button"
-                accessibilityLabel={`Öka antal ${dish.name}`}
-              >
+                accessibilityLabel={`Öka antal ${dish.name}`}>
                 <Text style={styles.quantityButtonText}>+</Text>
               </Pressable>
             </View>
-
           </View>
-
         ))}
 
-        <Pressable
-          style={styles.clearButton}
-          onPress={clearMeal}
-        >
-          <Text style={styles.clearButtonText}>
-            Töm måltid
-          </Text>
+        <Pressable style={styles.clearButton} onPress={clearMeal}>
+          <Text style={styles.clearButtonText}>Töm måltid</Text>
         </Pressable>
       </ScrollView>
 
@@ -108,7 +98,6 @@ export default function MealScreen() {
         <Text style={styles.total}>{total} kr</Text>
       </View>
     </SafeAreaView>
-
   );
 }
 
@@ -119,8 +108,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 32,
-    fontWeight: "800",
+    fontSize: 42,
     color: colors.turquoise,
     textAlign: "center",
     marginTop: spacing.screenTop,

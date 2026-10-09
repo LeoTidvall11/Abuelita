@@ -39,22 +39,28 @@ export default function HomeScreen({ navigation }) {
         <Pressable
           onPress={() => navigation.navigate("Menu")}
           style={styles.primaryButton}
-          accessibilityRole="button"
-        >
-          <Text style={styles.buttonText}>Meny</Text>
+          accessibilityRole="button">
+          <Text style={[styles.buttonText, styles.lightButtonText]}>Meny</Text>
         </Pressable>
 
-        <Pressable onPress={bookTable} style={styles.secondaryButton}>
-          <Text style={styles.buttonText}>Boka Bord</Text>
+        <Pressable
+          onPress={bookTable}
+          style={styles.secondaryButton}
+          accessibilityRole="button"
+          accessibilityHint="Öppnar ett mejl för att boka bord">
+          <Text style={[styles.buttonText, styles.lightButtonText]}>
+            Boka Bord
+          </Text>
         </Pressable>
 
         <Pressable
           onPress={() => navigation.navigate("AboutUs")}
           style={styles.thirdButton}
           accessibilityRole="button"
-          accessibilityHint="Visar adress och öppettider"
-        >
-          <Text style={styles.buttonText}>Hitta Hit</Text>
+          accessibilityHint="Visar adress och öppettider">
+          <Text style={[styles.buttonText, styles.lightButtonText]}>
+            Hitta Hit
+          </Text>
         </Pressable>
       </View>
     </ScreenBackground>
@@ -85,7 +91,7 @@ const styles = StyleSheet.create({
   },
 
   secondaryButton: {
-    backgroundColor: colors.yellow,
+    backgroundColor: colors.orange,
     padding: 18,
     borderRadius: 28,
     marginBottom: 16,
@@ -102,5 +108,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "700",
     textAlign: "center",
+  },
+
+  lightButtonText: {
+    color: colors.white,
   },
 });
